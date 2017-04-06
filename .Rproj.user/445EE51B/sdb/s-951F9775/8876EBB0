@@ -1,0 +1,20 @@
+{
+    "collab_server" : "",
+    "contents" : "#subset GCA pre and post responses from FSF all data- include cl, Sex and ethnicity codes\nGCA_prepost <- subset(FSF_alldata, select=c(StudentID, Semester, cl, Pre1:Post25, Sex:Demo4White5))\n\n#use lapply to find means of all GCA pre and post item responses, write to new list\n#GCA_item_Means <- lapply(3:52, mean)\n\n#calculate GCA pre and post total scores for each case add new vars to data frame\nPre_tot <- rowSums(GCA_prepost[4:28], na.rm = TRUE)\nPost_tot <- rowSums(GCA_prepost[29:53], na.rm = TRUE)\nGCA_prepost$Pre_tot <- Pre_tot\nGCA_prepost$Post_tot <- Post_tot\n\n#calculate raw gain and <g> for each case and append new vars to data frame\nraw_gain <- (GCA_prepost[62] - GCA_prepost[61])\nnorm_gain <- raw_gain/(25 - GCA_prepost[61]) \nGCA_prepost$gain <- raw_gain\nGCA_prepost$norm_gain <- norm_gain\n\n#filter for cl = 1 and Semester = Fa2015 from GCA_prepost, calc ES and g\ncl1f15 <- filter(GCA_prepost, Semester==\"Fa2015\", cl==1)\ncl1f15_ES <- (mean(cl1f15$Post_tot, na.rm = TRUE) - mean(cl1f15$Pre_tot, na.rm = TRUE))/sd(cl1f15$Pre_tot, na.rm = TRUE)\ncl1f15_g <- (mean(cl1f15$Post_tot, na.rm = TRUE) - mean(cl1f15$Pre_tot, na.rm = TRUE))/(25-mean(cl1f15$Pre_tot, na.rm = TRUE))\ncl1f15gains <- c(cl1f15_ES, cl1f15_g)\n#make this a function and then use lapply to iterate over classes and Semesters?\n\n#calculate pre and post totals and gains (<g>, ES) for local items for each class\n\n#code new var for GCA and local scores by learning goal, find gains for these item groupings\n\n\n\n\n\n\n",
+    "created" : 1491513849936.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "1529472962",
+    "id" : "8876EBB0",
+    "lastKnownWriteTime" : 1491494425,
+    "last_content_update" : 1491494425,
+    "path" : "C:/Users/talbotr/Desktop/Keck/GCA_code.R",
+    "project_path" : "GCA_code.R",
+    "properties" : {
+    },
+    "relative_order" : 2,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

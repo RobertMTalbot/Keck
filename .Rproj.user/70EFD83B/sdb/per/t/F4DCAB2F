@@ -1,0 +1,20 @@
+{
+    "collab_server" : "",
+    "contents" : "#subset GCA pre and post responses from all data BY CLASS\n#use lapply to find means of all GCA pre and post item responses, name new list\nGCA_prepost <- subset(X1516_alldata, select=GCAPre1:GCAPost25)\nGCA_Means <- lapply(GCA_prepost, mean)\n\n#calculate GCA pre and post scores for each case, also find individual gain score\n",
+    "created" : 1487002766945.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "4242216111",
+    "id" : "F4DCAB2F",
+    "lastKnownWriteTime" : 1486992357,
+    "last_content_update" : 1486992357,
+    "path" : "C:/Users/talbotr/Google Drive/GCA_keck/11-R/GCA_code.R",
+    "project_path" : "GCA_code.R",
+    "properties" : {
+    },
+    "relative_order" : 1,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

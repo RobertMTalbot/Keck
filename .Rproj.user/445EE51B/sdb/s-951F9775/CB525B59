@@ -1,0 +1,21 @@
+{
+    "collab_server" : "",
+    "contents" : "#testing commkitto git",
+    "created" : 1491513902451.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "4225292236",
+    "id" : "CB525B59",
+    "lastKnownWriteTime" : 1491513925,
+    "last_content_update" : 1491513925961,
+    "path" : "C:/Users/talbotr/Desktop/Keck/git_test.R",
+    "project_path" : "git_test.R",
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 2,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}
