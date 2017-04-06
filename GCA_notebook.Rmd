@@ -1,0 +1,54 @@
+---
+title: "GCA Analysis Notebook"
+output: html_notebook
+---
+Load data from GCA_ALL_DATA_fa15_sp16_fa16_03302017, name the new data frame FSF_alldata (FSF = "Fall Spring Fall"")
+```{r}
+library(readr)
+FSF_alldata <- read_csv("C:/Users/talbotr/Desktop/Keck_R/FSF_alldata.csv")
+```
+
+This code subsets GCA pre and post responses from FSF all data- including cl, Sex and ethnicity codes
+```{r}
+GCA_prepost <- subset(FSF_alldata, select=c(StudentID, Semester, cl, Pre1:Post25, Sex:Demo4White5))
+```
+
+
+Use lapply to find means of all GCA pre and post item responses and write to new list. This code is not implemented yet
+```{r}
+GCA_item_Means <- lapply(3:52, mean)
+```
+
+
+This code calculates GCA pre and post total scores for each case adds the new vars to  FSF_alldata
+```{r}
+Pre_tot <- rowSums(GCA_prepost[4:28], na.rm = TRUE)
+Post_tot <- rowSums(GCA_prepost[29:53], na.rm = TRUE)
+GCA_prepost$Pre_tot <- Pre_tot
+GCA_prepost$Post_tot <- Post_tot
+```
+
+
+This calculates raw gain and <g> for each case and appends the new vars to FSF_alldata
+```{r}
+raw_gain <- (GCA_prepost[62] - GCA_prepost[61])
+norm_gain <- raw_gain/(25 - GCA_prepost[61]) 
+GCA_prepost$gain <- raw_gain
+GCA_prepost$norm_gain <- norm_gain
+```
+
+Now filter FSF_alldata for cl = 1 and Semester = Fa2015 from GCA_prepost, then calculate ES and g for this class (class 1 from Fall 2015)
+```{r}
+cl1f15 <- filter(GCA_prepost, Semester=="Fa2015", cl==1)
+cl1f15_ES <- (mean(cl1f15$Post_tot, na.rm = TRUE) - mean(cl1f15$Pre_tot, na.rm = TRUE))/sd(cl1f15$Pre_tot, na.rm = TRUE)
+cl1f15_g <- (mean(cl1f15$Post_tot, na.rm = TRUE) - mean(cl1f15$Pre_tot, na.rm = TRUE))/(25-mean(cl1f15$Pre_tot, na.rm = TRUE))
+cl1f15gains <- c(cl1f15_ES, cl1f15_g)
+```
+
+
+I need to make the above code a function and then use lapply to iterate over classes and Semesters, or jusyt loop it over and over. Thoughts omn how to code that nicely?
+
+Next we need to calculate pre and post totals and gains (<g>, ES) for the local items for each class
+
+Now we need to code new vars for GCA and local scores by learning goal, and find gains for these item groupings
+
