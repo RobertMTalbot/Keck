@@ -1,14 +1,14 @@
 {
     "collab_server" : "",
-    "contents" : "#testing commkitto git",
+    "contents" : "#testing commit to git\n#if you can read this then the repo is up to date",
     "created" : 1491513902451.000,
     "dirty" : false,
     "encoding" : "UTF-8",
     "folds" : "",
-    "hash" : "4225292236",
+    "hash" : "2202867866",
     "id" : "CB525B59",
-    "lastKnownWriteTime" : 1491513925,
-    "last_content_update" : 1491513925961,
+    "lastKnownWriteTime" : 1491514146,
+    "last_content_update" : 1491514146069,
     "path" : "C:/Users/talbotr/Desktop/Keck/git_test.R",
     "project_path" : "git_test.R",
     "properties" : {
