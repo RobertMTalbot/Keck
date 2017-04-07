@@ -56,15 +56,16 @@ I need to make the above code a function and then use lapply to iterate over cla
 
 
 #Plot histogram of pre and post GCA for a class
-Plot a histogram (using ggplot) of class 1 Fall 2015 pre and post GCA scores
+Plot a histogram of class 1 Fall 2015 pre and post GCA scores
 ```{r}
 library(ggplot2)
 library(RColorBrewer)
 df <-  data.frame(x = cl1f15$Pre_tot, x2 = cl1f15$Post_tot)
 
 g <-  ggplot(df, aes(x)) + geom_histogram(aes(x = x, y = ..count..),
-                                         binwidth = 1, fill="blue") + 
-  geom_histogram( aes(x = x2, y = -..count..), binwidth = 1, fill= "green") +
+                  binwidth = 1, color="black", fill="blue", alpha=0.5) + 
+  geom_histogram( aes(x = x2, y = -..count..), 
+                  binwidth = 1, color="black", fill= "green", alpha=0.5) +
   scale_x_continuous(name = "GCA Pre/Post Score", 
                      limits=c(0, 25)) +
   scale_y_continuous(name = "Count") +
@@ -72,6 +73,18 @@ g <-  ggplot(df, aes(x)) + geom_histogram(aes(x = x, y = ..count..),
 print(g)
 ```
 
+Or this if we don't want to post distribution inverted
+```{r}
+g2 <-  ggplot(df, aes(x)) + geom_histogram(aes(x = x, y = ..count..),
+                  binwidth = 1, color="black", fill="blue", alpha=0.5) + 
+  geom_histogram( aes(x = x2, y = ..count..), 
+                  binwidth = 1, color="black", fill= "green", alpha=0.5) +
+  scale_x_continuous(name = "GCA Pre/Post Score", 
+                     limits=c(0, 25)) +
+  scale_y_continuous(name = "Count") +
+  ggtitle("Class 1 Fall 2015 GCA Pre and Post Scores")
+print(g2)
+```
 
 
 #Local item <g> and ES

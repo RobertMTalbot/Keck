@@ -27,22 +27,22 @@ cl1f15gains <- c(cl1f15_ES, cl1f15_g)
 
 #code new var for GCA and local scores by learning goal, find gains for these item groupings
 
-#scraps to test:
 
 
-
+#histogram scraps for testing:
 
 library(ggplot2)
 df <-  data.frame(x = cl1f15$Pre_tot, x2 = cl1f15$Post_tot)
 
-g <-  ggplot(df, aes(x)) + geom_histogram(aes(x = x, y = ..count..),
-                                         binwidth = 1, fill="blue") + 
-  geom_histogram( aes(x = x2, y = -..count..), binwidth = 1, fill= "green") +
+g2 <-  ggplot(df, aes(x)) + geom_histogram(aes(x = x, y = ..count..),
+                  binwidth = 1, color="black", fill="blue", alpha=0.5) + 
+  geom_histogram( aes(x = x2, y = ..count..), 
+                  binwidth = 1, color="black", fill= "green", alpha=0.5) +
   scale_x_continuous(name = "GCA Pre/Post Score", 
                      limits=c(0, 25)) +
   scale_y_continuous(name = "Count") +
   ggtitle("Class 1 Fall 2015 GCA Pre and Post Scores")
-print(g)
+print(g2)
 
 ##
 
