@@ -1,17 +1,19 @@
 ---
 title: "GCA Analysis Notebook"
 author: "Bud Talbot, Derek Briggs"
-output: html_notebook
+output:
+  html_notebook: default
+  html_document: default
 ---
 
-#Load data
+##Load data
 Load data from GCA_ALL_DATA_fa15_sp16_fa16_03302017, name the new data frame FSF_alldata (FSF = "Fall Spring Fall")
 ```{r}
 library(readr)
-FSF_alldata <- read_csv("C:/Users/talbotr/Desktop/Keck_R/FSF_alldata.csv")
+FSF_alldata <- read_csv("C:/Users/talbotr/Desktop/Keck/FSF_alldata.csv")
 ```
 
-#Subset data
+##Subset data
 This code subsets GCA pre and post responses from FSF all data- including cl, Sex and ethnicity codes
 ```{r}
 GCA_prepost <- subset(FSF_alldata, select=c(StudentID, Semester, cl, Pre1:Post25, Sex:Demo4White5))
@@ -23,7 +25,7 @@ Use lapply to find means of all GCA pre and post item responses and write to new
 GCA_item_Means <- lapply(3:52, mean)
 ```
 
-#Calculate GCA Pre and Post total scores
+##Calculate GCA Pre and Post total scores
 This code calculates GCA pre and post total scores for each case adds the new vars to  FSF_alldata
 ```{r}
 Pre_tot <- rowSums(GCA_prepost[4:28], na.rm = TRUE)
@@ -32,7 +34,7 @@ GCA_prepost$Pre_tot <- Pre_tot
 GCA_prepost$Post_tot <- Post_tot
 ```
 
-#Calculate <g> and Effect Size
+##Calculate <g> and Effect Size
 This code calculates raw gain and <g> for each case and appends the new vars to FSF_alldata
 ```{r}
 raw_gain <- (GCA_prepost[62] - GCA_prepost[61])
@@ -41,21 +43,22 @@ GCA_prepost$gain <- raw_gain
 GCA_prepost$norm_gain <- norm_gain
 ```
 
-#Filter and calculate class <g> and ES
-Now filter (load dplyr) FSF_alldata for cl = 1 and Semester = Fa2015 from GCA_prepost, then calculate ES and g for this class (class 1 from Fall 2015)
+##Filter and calculate class <g> and ES
+Now filter (using dplyr) FSF_alldata for cl = 1 and Semester = Fa2015 from GCA_prepost, then calculate ES and g for this class (class 1 from Fall 2015)
 ```{r}
 library(dplyr)
 cl1f15 <- filter(GCA_prepost, Semester=="Fa2015", cl==1)
 cl1f15_ES <- (mean(cl1f15$Post_tot, na.rm = TRUE) - mean(cl1f15$Pre_tot, na.rm = TRUE))/sd(cl1f15$Pre_tot, na.rm = TRUE)
 cl1f15_g <- (mean(cl1f15$Post_tot, na.rm = TRUE) - mean(cl1f15$Pre_tot, na.rm = TRUE))/(25-mean(cl1f15$Pre_tot, na.rm = TRUE))
 cl1f15gains <- c(cl1f15_ES, cl1f15_g)
+print(cl1f15gains)
 ```
 
 
-I need to make the above code a function and then use lapply to iterate over classes and Semesters, or just loop it over and over. Thoughts omn how to code that nicely?
+I need to make the above code a function and then use lapply to iterate over all classes and Semesters, or just increment and loop it over and over. Then write each resulting vector (e.g. cl1f15gains) to a new table. Thoughts on how to code that nicely?
 
 
-#Plot histogram of pre and post GCA for a class
+##Plot histogram of pre and post GCA for a class
 Plot a histogram of class 1 Fall 2015 pre and post GCA scores
 ```{r}
 library(ggplot2)
@@ -73,7 +76,7 @@ g <-  ggplot(df, aes(x)) + geom_histogram(aes(x = x, y = ..count..),
 print(g)
 ```
 
-Or this if we don't want to post distribution inverted
+Or this if we don't want the post distribution inverted
 ```{r}
 g2 <-  ggplot(df, aes(x)) + geom_histogram(aes(x = x, y = ..count..),
                   binwidth = 1, color="black", fill="blue", alpha=0.5) + 
@@ -87,9 +90,9 @@ print(g2)
 ```
 
 
-#Local item <g> and ES
+##Local item <g> and ES
 Next we need to calculate pre and post totals and gains (<g>, ES) for the local items for each class
 
-#GCA and local gain scores by learning goals
+##GCA and local gain scores by learning goals
 Then we need to code new vars for GCA and local scores by learning goal, and find gains for these item groupings
 
