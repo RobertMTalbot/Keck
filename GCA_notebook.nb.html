@@ -9,6 +9,7 @@
 <meta name="generator" content="pandoc" />
 
 
+<meta name="author" content="Bud Talbot, Derek Briggs" />
 
 
 <title>GCA Analysis Notebook</title>
@@ -167,12 +168,15 @@ $(document).ready(function () {
 
 
 <h1 class="title toc-ignore">GCA Analysis Notebook</h1>
+<h4 class="author"><em>Bud Talbot, Derek Briggs</em></h4>
 
 </div>
 
 
 <!-- rnb-text-begin -->
-<p>Load data from GCA_ALL_DATA_fa15_sp16_fa16_03302017, name the new data frame FSF_alldata (FSF = “Fall Spring Fall”“)</p>
+<div id="load-data" class="section level1">
+<h1>Load data</h1>
+<p>Load data from GCA_ALL_DATA_fa15_sp16_fa16_03302017, name the new data frame FSF_alldata (FSF = “Fall Spring Fall”)</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
 <!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGlicmFyeShyZWFkcilcbkZTRl9hbGxkYXRhIDwtIHJlYWRfY3N2KFwiQzovVXNlcnMvdGFsYm90ci9EZXNrdG9wL0tlY2tfUi9GU0ZfYWxsZGF0YS5jc3ZcIilcbmBgYCJ9 -->
@@ -181,6 +185,9 @@ FSF_alldata &lt;- read_csv(&quot;C:/Users/talbotr/Desktop/Keck_R/FSF_alldata.csv
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
+</div>
+<div id="subset-data" class="section level1">
+<h1>Subset data</h1>
 <p>This code subsets GCA pre and post responses from FSF all data- including cl, Sex and ethnicity codes</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
@@ -197,6 +204,9 @@ FSF_alldata &lt;- read_csv(&quot;C:/Users/talbotr/Desktop/Keck_R/FSF_alldata.csv
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
+</div>
+<div id="calculate-gca-pre-and-post-total-scores" class="section level1">
+<h1>Calculate GCA Pre and Post total scores</h1>
 <p>This code calculates GCA pre and post total scores for each case adds the new vars to FSF_alldata</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
@@ -208,6 +218,9 @@ GCA_prepost$Post_tot &lt;- Post_tot</code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
+</div>
+<div id="calculate-and-effect-size" class="section level1">
+<h1>Calculate <g> and Effect Size</h1>
 <p>This code calculates raw gain and <g> for each case and appends the new vars to FSF_alldata</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
@@ -219,6 +232,9 @@ GCA_prepost$norm_gain &lt;- norm_gain</code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
+</div>
+<div id="filter-and-calculate-class-and-es" class="section level1">
+<h1>Filter and calculate class <g> and ES</h1>
 <p>Now filter (load dplyr) FSF_alldata for cl = 1 and Semester = Fa2015 from GCA_prepost, then calculate ES and g for this class (class 1 from Fall 2015)</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
@@ -231,6 +247,10 @@ cl1f15gains &lt;- c(cl1f15_ES, cl1f15_g)</code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
+<p>I need to make the above code a function and then use lapply to iterate over classes and Semesters, or just loop it over and over. Thoughts omn how to code that nicely?</p>
+</div>
+<div id="plot-histogram-of-pre-and-post-gca-for-a-class" class="section level1">
+<h1>Plot histogram of pre and post GCA for a class</h1>
 <p>Plot a histogram (using ggplot) of class 1 Fall 2015 pre and post GCA scores</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
@@ -252,12 +272,18 @@ print(g)</code></pre>
 <!-- rnb-plot-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
-<p>I need to make the above code a function and then use lapply to iterate over classes and Semesters, or jusyt loop it over and over. Thoughts omn how to code that nicely?</p>
+</div>
+<div id="local-item-and-es" class="section level1">
+<h1>Local item <g> and ES</h1>
 <p>Next we need to calculate pre and post totals and gains (<g>, ES) for the local items for each class</p>
-<p>Now we need to code new vars for GCA and local scores by learning goal, and find gains for these item groupings</p>
+</div>
+<div id="gca-and-local-gain-scores-by-learning-goals" class="section level1">
+<h1>GCA and local gain scores by learning goals</h1>
+<p>Then we need to code new vars for GCA and local scores by learning goal, and find gains for these item groupings</p>
 <!-- rnb-text-end -->
+</div>
 
-<div id="rmd-source-code">LS0tDQp0aXRsZTogIkdDQSBBbmFseXNpcyBOb3RlYm9vayINCm91dHB1dDogaHRtbF9ub3RlYm9vaw0KLS0tDQpMb2FkIGRhdGEgZnJvbSBHQ0FfQUxMX0RBVEFfZmExNV9zcDE2X2ZhMTZfMDMzMDIwMTcsIG5hbWUgdGhlIG5ldyBkYXRhIGZyYW1lIEZTRl9hbGxkYXRhIChGU0YgPSAiRmFsbCBTcHJpbmcgRmFsbCIiKQ0KYGBge3J9DQpsaWJyYXJ5KHJlYWRyKQ0KRlNGX2FsbGRhdGEgPC0gcmVhZF9jc3YoIkM6L1VzZXJzL3RhbGJvdHIvRGVza3RvcC9LZWNrX1IvRlNGX2FsbGRhdGEuY3N2IikNCmBgYA0KDQpUaGlzIGNvZGUgc3Vic2V0cyBHQ0EgcHJlIGFuZCBwb3N0IHJlc3BvbnNlcyBmcm9tIEZTRiBhbGwgZGF0YS0gaW5jbHVkaW5nIGNsLCBTZXggYW5kIGV0aG5pY2l0eSBjb2Rlcw0KYGBge3J9DQpHQ0FfcHJlcG9zdCA8LSBzdWJzZXQoRlNGX2FsbGRhdGEsIHNlbGVjdD1jKFN0dWRlbnRJRCwgU2VtZXN0ZXIsIGNsLCBQcmUxOlBvc3QyNSwgU2V4OkRlbW80V2hpdGU1KSkNCmBgYA0KDQoNClVzZSBsYXBwbHkgdG8gZmluZCBtZWFucyBvZiBhbGwgR0NBIHByZSBhbmQgcG9zdCBpdGVtIHJlc3BvbnNlcyBhbmQgd3JpdGUgdG8gbmV3IGxpc3QuIFRoaXMgY29kZSBpcyBub3QgaW1wbGVtZW50ZWQgeWV0DQpgYGB7cn0NCkdDQV9pdGVtX01lYW5zIDwtIGxhcHBseSgzOjUyLCBtZWFuKQ0KYGBgDQoNCg0KVGhpcyBjb2RlIGNhbGN1bGF0ZXMgR0NBIHByZSBhbmQgcG9zdCB0b3RhbCBzY29yZXMgZm9yIGVhY2ggY2FzZSBhZGRzIHRoZSBuZXcgdmFycyB0byAgRlNGX2FsbGRhdGENCmBgYHtyfQ0KUHJlX3RvdCA8LSByb3dTdW1zKEdDQV9wcmVwb3N0WzQ6MjhdLCBuYS5ybSA9IFRSVUUpDQpQb3N0X3RvdCA8LSByb3dTdW1zKEdDQV9wcmVwb3N0WzI5OjUzXSwgbmEucm0gPSBUUlVFKQ0KR0NBX3ByZXBvc3QkUHJlX3RvdCA8LSBQcmVfdG90DQpHQ0FfcHJlcG9zdCRQb3N0X3RvdCA8LSBQb3N0X3RvdA0KYGBgDQoNCg0KVGhpcyBjb2RlIGNhbGN1bGF0ZXMgcmF3IGdhaW4gYW5kIDxnPiBmb3IgZWFjaCBjYXNlIGFuZCBhcHBlbmRzIHRoZSBuZXcgdmFycyB0byBGU0ZfYWxsZGF0YQ0KYGBge3J9DQpyYXdfZ2FpbiA8LSAoR0NBX3ByZXBvc3RbNjJdIC0gR0NBX3ByZXBvc3RbNjFdKQ0Kbm9ybV9nYWluIDwtIHJhd19nYWluLygyNSAtIEdDQV9wcmVwb3N0WzYxXSkgDQpHQ0FfcHJlcG9zdCRnYWluIDwtIHJhd19nYWluDQpHQ0FfcHJlcG9zdCRub3JtX2dhaW4gPC0gbm9ybV9nYWluDQpgYGANCg0KTm93IGZpbHRlciAobG9hZCBkcGx5cikgRlNGX2FsbGRhdGEgZm9yIGNsID0gMSBhbmQgU2VtZXN0ZXIgPSBGYTIwMTUgZnJvbSBHQ0FfcHJlcG9zdCwgdGhlbiBjYWxjdWxhdGUgRVMgYW5kIGcgZm9yIHRoaXMgY2xhc3MgKGNsYXNzIDEgZnJvbSBGYWxsIDIwMTUpDQpgYGB7cn0NCmxpYnJhcnkoZHBseXIpDQpjbDFmMTUgPC0gZmlsdGVyKEdDQV9wcmVwb3N0LCBTZW1lc3Rlcj09IkZhMjAxNSIsIGNsPT0xKQ0KY2wxZjE1X0VTIDwtIChtZWFuKGNsMWYxNSRQb3N0X3RvdCwgbmEucm0gPSBUUlVFKSAtIG1lYW4oY2wxZjE1JFByZV90b3QsIG5hLnJtID0gVFJVRSkpL3NkKGNsMWYxNSRQcmVfdG90LCBuYS5ybSA9IFRSVUUpDQpjbDFmMTVfZyA8LSAobWVhbihjbDFmMTUkUG9zdF90b3QsIG5hLnJtID0gVFJVRSkgLSBtZWFuKGNsMWYxNSRQcmVfdG90LCBuYS5ybSA9IFRSVUUpKS8oMjUtbWVhbihjbDFmMTUkUHJlX3RvdCwgbmEucm0gPSBUUlVFKSkNCmNsMWYxNWdhaW5zIDwtIGMoY2wxZjE1X0VTLCBjbDFmMTVfZykNCmBgYA0KDQpQbG90IGEgaGlzdG9ncmFtICh1c2luZyBnZ3Bsb3QpIG9mIGNsYXNzIDEgRmFsbCAyMDE1IHByZSBhbmQgcG9zdCBHQ0Egc2NvcmVzDQpgYGB7cn0NCmxpYnJhcnkoZ2dwbG90MikNCmxpYnJhcnkoUkNvbG9yQnJld2VyKQ0KZGYgPC0gIGRhdGEuZnJhbWUoeCA9IGNsMWYxNSRQcmVfdG90LCB4MiA9IGNsMWYxNSRQb3N0X3RvdCkNCg0KZyA8LSAgZ2dwbG90KGRmLCBhZXMoeCkpICsgZ2VvbV9oaXN0b2dyYW0oYWVzKHggPSB4LCB5ID0gLi5jb3VudC4uKSwNCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgYmlud2lkdGggPSAxLCBmaWxsPSJibHVlIikgKyANCiAgZ2VvbV9oaXN0b2dyYW0oIGFlcyh4ID0geDIsIHkgPSAtLi5jb3VudC4uKSwgYmlud2lkdGggPSAxLCBmaWxsPSAiZ3JlZW4iKSArDQogIHNjYWxlX3hfY29udGludW91cyhuYW1lID0gIkdDQSBQcmUvUG9zdCBTY29yZSIsIA0KICAgICAgICAgICAgICAgICAgICAgbGltaXRzPWMoMCwgMjUpKSArDQogIHNjYWxlX3lfY29udGludW91cyhuYW1lID0gIkNvdW50IikgKw0KICBnZ3RpdGxlKCJDbGFzcyAxIEZhbGwgMjAxNSBHQ0EgUHJlIGFuZCBQb3N0IFNjb3JlcyIpDQpwcmludChnKQ0KYGBgDQoNCg0KSSBuZWVkIHRvIG1ha2UgdGhlIGFib3ZlIGNvZGUgYSBmdW5jdGlvbiBhbmQgdGhlbiB1c2UgbGFwcGx5IHRvIGl0ZXJhdGUgb3ZlciBjbGFzc2VzIGFuZCBTZW1lc3RlcnMsIG9yIGp1c3l0IGxvb3AgaXQgb3ZlciBhbmQgb3Zlci4gVGhvdWdodHMgb21uIGhvdyB0byBjb2RlIHRoYXQgbmljZWx5Pw0KDQpOZXh0IHdlIG5lZWQgdG8gY2FsY3VsYXRlIHByZSBhbmQgcG9zdCB0b3RhbHMgYW5kIGdhaW5zICg8Zz4sIEVTKSBmb3IgdGhlIGxvY2FsIGl0ZW1zIGZvciBlYWNoIGNsYXNzDQoNCk5vdyB3ZSBuZWVkIHRvIGNvZGUgbmV3IHZhcnMgZm9yIEdDQSBhbmQgbG9jYWwgc2NvcmVzIGJ5IGxlYXJuaW5nIGdvYWwsIGFuZCBmaW5kIGdhaW5zIGZvciB0aGVzZSBpdGVtIGdyb3VwaW5ncw0KDQo=</div>
+<div id="rmd-source-code">LS0tDQp0aXRsZTogIkdDQSBBbmFseXNpcyBOb3RlYm9vayINCmF1dGhvcjogIkJ1ZCBUYWxib3QsIERlcmVrIEJyaWdncyINCm91dHB1dDogaHRtbF9ub3RlYm9vaw0KLS0tDQoNCiNMb2FkIGRhdGENCkxvYWQgZGF0YSBmcm9tIEdDQV9BTExfREFUQV9mYTE1X3NwMTZfZmExNl8wMzMwMjAxNywgbmFtZSB0aGUgbmV3IGRhdGEgZnJhbWUgRlNGX2FsbGRhdGEgKEZTRiA9ICJGYWxsIFNwcmluZyBGYWxsIikNCmBgYHtyfQ0KbGlicmFyeShyZWFkcikNCkZTRl9hbGxkYXRhIDwtIHJlYWRfY3N2KCJDOi9Vc2Vycy90YWxib3RyL0Rlc2t0b3AvS2Vja19SL0ZTRl9hbGxkYXRhLmNzdiIpDQpgYGANCg0KI1N1YnNldCBkYXRhDQpUaGlzIGNvZGUgc3Vic2V0cyBHQ0EgcHJlIGFuZCBwb3N0IHJlc3BvbnNlcyBmcm9tIEZTRiBhbGwgZGF0YS0gaW5jbHVkaW5nIGNsLCBTZXggYW5kIGV0aG5pY2l0eSBjb2Rlcw0KYGBge3J9DQpHQ0FfcHJlcG9zdCA8LSBzdWJzZXQoRlNGX2FsbGRhdGEsIHNlbGVjdD1jKFN0dWRlbnRJRCwgU2VtZXN0ZXIsIGNsLCBQcmUxOlBvc3QyNSwgU2V4OkRlbW80V2hpdGU1KSkNCmBgYA0KDQoNClVzZSBsYXBwbHkgdG8gZmluZCBtZWFucyBvZiBhbGwgR0NBIHByZSBhbmQgcG9zdCBpdGVtIHJlc3BvbnNlcyBhbmQgd3JpdGUgdG8gbmV3IGxpc3QuIFRoaXMgY29kZSBpcyBub3QgaW1wbGVtZW50ZWQgeWV0DQpgYGB7cn0NCkdDQV9pdGVtX01lYW5zIDwtIGxhcHBseSgzOjUyLCBtZWFuKQ0KYGBgDQoNCiNDYWxjdWxhdGUgR0NBIFByZSBhbmQgUG9zdCB0b3RhbCBzY29yZXMNClRoaXMgY29kZSBjYWxjdWxhdGVzIEdDQSBwcmUgYW5kIHBvc3QgdG90YWwgc2NvcmVzIGZvciBlYWNoIGNhc2UgYWRkcyB0aGUgbmV3IHZhcnMgdG8gIEZTRl9hbGxkYXRhDQpgYGB7cn0NClByZV90b3QgPC0gcm93U3VtcyhHQ0FfcHJlcG9zdFs0OjI4XSwgbmEucm0gPSBUUlVFKQ0KUG9zdF90b3QgPC0gcm93U3VtcyhHQ0FfcHJlcG9zdFsyOTo1M10sIG5hLnJtID0gVFJVRSkNCkdDQV9wcmVwb3N0JFByZV90b3QgPC0gUHJlX3RvdA0KR0NBX3ByZXBvc3QkUG9zdF90b3QgPC0gUG9zdF90b3QNCmBgYA0KDQojQ2FsY3VsYXRlIDxnPiBhbmQgRWZmZWN0IFNpemUNClRoaXMgY29kZSBjYWxjdWxhdGVzIHJhdyBnYWluIGFuZCA8Zz4gZm9yIGVhY2ggY2FzZSBhbmQgYXBwZW5kcyB0aGUgbmV3IHZhcnMgdG8gRlNGX2FsbGRhdGENCmBgYHtyfQ0KcmF3X2dhaW4gPC0gKEdDQV9wcmVwb3N0WzYyXSAtIEdDQV9wcmVwb3N0WzYxXSkNCm5vcm1fZ2FpbiA8LSByYXdfZ2Fpbi8oMjUgLSBHQ0FfcHJlcG9zdFs2MV0pIA0KR0NBX3ByZXBvc3QkZ2FpbiA8LSByYXdfZ2Fpbg0KR0NBX3ByZXBvc3Qkbm9ybV9nYWluIDwtIG5vcm1fZ2Fpbg0KYGBgDQoNCiNGaWx0ZXIgYW5kIGNhbGN1bGF0ZSBjbGFzcyA8Zz4gYW5kIEVTDQpOb3cgZmlsdGVyIChsb2FkIGRwbHlyKSBGU0ZfYWxsZGF0YSBmb3IgY2wgPSAxIGFuZCBTZW1lc3RlciA9IEZhMjAxNSBmcm9tIEdDQV9wcmVwb3N0LCB0aGVuIGNhbGN1bGF0ZSBFUyBhbmQgZyBmb3IgdGhpcyBjbGFzcyAoY2xhc3MgMSBmcm9tIEZhbGwgMjAxNSkNCmBgYHtyfQ0KbGlicmFyeShkcGx5cikNCmNsMWYxNSA8LSBmaWx0ZXIoR0NBX3ByZXBvc3QsIFNlbWVzdGVyPT0iRmEyMDE1IiwgY2w9PTEpDQpjbDFmMTVfRVMgPC0gKG1lYW4oY2wxZjE1JFBvc3RfdG90LCBuYS5ybSA9IFRSVUUpIC0gbWVhbihjbDFmMTUkUHJlX3RvdCwgbmEucm0gPSBUUlVFKSkvc2QoY2wxZjE1JFByZV90b3QsIG5hLnJtID0gVFJVRSkNCmNsMWYxNV9nIDwtIChtZWFuKGNsMWYxNSRQb3N0X3RvdCwgbmEucm0gPSBUUlVFKSAtIG1lYW4oY2wxZjE1JFByZV90b3QsIG5hLnJtID0gVFJVRSkpLygyNS1tZWFuKGNsMWYxNSRQcmVfdG90LCBuYS5ybSA9IFRSVUUpKQ0KY2wxZjE1Z2FpbnMgPC0gYyhjbDFmMTVfRVMsIGNsMWYxNV9nKQ0KYGBgDQoNCg0KSSBuZWVkIHRvIG1ha2UgdGhlIGFib3ZlIGNvZGUgYSBmdW5jdGlvbiBhbmQgdGhlbiB1c2UgbGFwcGx5IHRvIGl0ZXJhdGUgb3ZlciBjbGFzc2VzIGFuZCBTZW1lc3RlcnMsIG9yIGp1c3QgbG9vcCBpdCBvdmVyIGFuZCBvdmVyLiBUaG91Z2h0cyBvbW4gaG93IHRvIGNvZGUgdGhhdCBuaWNlbHk/DQoNCg0KI1Bsb3QgaGlzdG9ncmFtIG9mIHByZSBhbmQgcG9zdCBHQ0EgZm9yIGEgY2xhc3MNClBsb3QgYSBoaXN0b2dyYW0gKHVzaW5nIGdncGxvdCkgb2YgY2xhc3MgMSBGYWxsIDIwMTUgcHJlIGFuZCBwb3N0IEdDQSBzY29yZXMNCmBgYHtyfQ0KbGlicmFyeShnZ3Bsb3QyKQ0KbGlicmFyeShSQ29sb3JCcmV3ZXIpDQpkZiA8LSAgZGF0YS5mcmFtZSh4ID0gY2wxZjE1JFByZV90b3QsIHgyID0gY2wxZjE1JFBvc3RfdG90KQ0KDQpnIDwtICBnZ3Bsb3QoZGYsIGFlcyh4KSkgKyBnZW9tX2hpc3RvZ3JhbShhZXMoeCA9IHgsIHkgPSAuLmNvdW50Li4pLA0KICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBiaW53aWR0aCA9IDEsIGZpbGw9ImJsdWUiKSArIA0KICBnZW9tX2hpc3RvZ3JhbSggYWVzKHggPSB4MiwgeSA9IC0uLmNvdW50Li4pLCBiaW53aWR0aCA9IDEsIGZpbGw9ICJncmVlbiIpICsNCiAgc2NhbGVfeF9jb250aW51b3VzKG5hbWUgPSAiR0NBIFByZS9Qb3N0IFNjb3JlIiwgDQogICAgICAgICAgICAgICAgICAgICBsaW1pdHM9YygwLCAyNSkpICsNCiAgc2NhbGVfeV9jb250aW51b3VzKG5hbWUgPSAiQ291bnQiKSArDQogIGdndGl0bGUoIkNsYXNzIDEgRmFsbCAyMDE1IEdDQSBQcmUgYW5kIFBvc3QgU2NvcmVzIikNCnByaW50KGcpDQpgYGANCg0KDQoNCiNMb2NhbCBpdGVtIDxnPiBhbmQgRVMNCk5leHQgd2UgbmVlZCB0byBjYWxjdWxhdGUgcHJlIGFuZCBwb3N0IHRvdGFscyBhbmQgZ2FpbnMgKDxnPiwgRVMpIGZvciB0aGUgbG9jYWwgaXRlbXMgZm9yIGVhY2ggY2xhc3MNCg0KI0dDQSBhbmQgbG9jYWwgZ2FpbiBzY29yZXMgYnkgbGVhcm5pbmcgZ29hbHMNClRoZW4gd2UgbmVlZCB0byBjb2RlIG5ldyB2YXJzIGZvciBHQ0EgYW5kIGxvY2FsIHNjb3JlcyBieSBsZWFybmluZyBnb2FsLCBhbmQgZmluZCBnYWlucyBmb3IgdGhlc2UgaXRlbSBncm91cGluZ3MNCg0K</div>
 
 
 
