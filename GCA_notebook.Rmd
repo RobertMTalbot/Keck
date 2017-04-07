@@ -29,7 +29,7 @@ GCA_prepost$Post_tot <- Post_tot
 ```
 
 
-This calculates raw gain and <g> for each case and appends the new vars to FSF_alldata
+This code calculates raw gain and <g> for each case and appends the new vars to FSF_alldata
 ```{r}
 raw_gain <- (GCA_prepost[62] - GCA_prepost[61])
 norm_gain <- raw_gain/(25 - GCA_prepost[61]) 
@@ -37,12 +37,29 @@ GCA_prepost$gain <- raw_gain
 GCA_prepost$norm_gain <- norm_gain
 ```
 
-Now filter FSF_alldata for cl = 1 and Semester = Fa2015 from GCA_prepost, then calculate ES and g for this class (class 1 from Fall 2015)
+Now filter (load dplyr) FSF_alldata for cl = 1 and Semester = Fa2015 from GCA_prepost, then calculate ES and g for this class (class 1 from Fall 2015)
 ```{r}
+library(dplyr)
 cl1f15 <- filter(GCA_prepost, Semester=="Fa2015", cl==1)
 cl1f15_ES <- (mean(cl1f15$Post_tot, na.rm = TRUE) - mean(cl1f15$Pre_tot, na.rm = TRUE))/sd(cl1f15$Pre_tot, na.rm = TRUE)
 cl1f15_g <- (mean(cl1f15$Post_tot, na.rm = TRUE) - mean(cl1f15$Pre_tot, na.rm = TRUE))/(25-mean(cl1f15$Pre_tot, na.rm = TRUE))
 cl1f15gains <- c(cl1f15_ES, cl1f15_g)
+```
+
+Plot a histogram (using ggplot) of class 1 Fall 2015 pre and post GCA scores
+```{r}
+library(ggplot2)
+library(RColorBrewer)
+df <-  data.frame(x = cl1f15$Pre_tot, x2 = cl1f15$Post_tot)
+
+g <-  ggplot(df, aes(x)) + geom_histogram(aes(x = x, y = ..count..),
+                                         binwidth = 1, fill="blue") + 
+  geom_histogram( aes(x = x2, y = -..count..), binwidth = 1, fill= "green") +
+  scale_x_continuous(name = "GCA Pre/Post Score", 
+                     limits=c(0, 25)) +
+  scale_y_continuous(name = "Count") +
+  ggtitle("Class 1 Fall 2015 GCA Pre and Post Scores")
+print(g)
 ```
 
 

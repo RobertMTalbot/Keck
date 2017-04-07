@@ -27,8 +27,42 @@ cl1f15gains <- c(cl1f15_ES, cl1f15_g)
 
 #code new var for GCA and local scores by learning goal, find gains for these item groupings
 
+#scraps to test:
 
 
 
 
+library(ggplot2)
+df <-  data.frame(x = cl1f15$Pre_tot, x2 = cl1f15$Post_tot)
+
+g <-  ggplot(df, aes(x)) + geom_histogram(aes(x = x, y = ..count..),
+                                         binwidth = 1, fill="blue") + 
+  geom_histogram( aes(x = x2, y = -..count..), binwidth = 1, fill= "green") +
+  scale_x_continuous(name = "GCA Pre/Post Score", 
+                     limits=c(0, 25)) +
+  scale_y_continuous(name = "Count") +
+  ggtitle("Class 1 Fall 2015 GCA Pre and Post Scores")
+print(g)
+
+##
+
+g2 <- ggplot(df, aes(x = x, fill = x2)) + 
+  geom_histogram(binwidth = 1, 
+                 position="identity", alpha=0.6) + 
+  scale_x_continuous(name = "GCA Pre/Post Score",                                                                                                                                   
+                     breaks = seq(0, 175, 25),                                                                                                                           
+                     limits=c(0, 25)) +
+  scale_y_continuous(name = "Count") +
+  ggtitle("Histogram of GCA Pre and Post Scores") +
+  theme_bw() +
+  theme(axis.line = element_line(size=1, colour = "black"),
+        panel.grid.major = element_line(colour = "#d3d3d3"),
+        panel.grid.minor = element_blank(),
+        panel.border = element_blank(), panel.background = element_blank(),
+        plot.title = element_text(size = 14, family = "Arial", face = "bold"),
+        text=element_text(family="Arial"),
+        axis.text.x=element_text(colour="black", size = 9),
+        axis.text.y=element_text(colour="black", size = 9)) +
+  scale_fill_brewer(palette="Accent")
+print(g2)
 

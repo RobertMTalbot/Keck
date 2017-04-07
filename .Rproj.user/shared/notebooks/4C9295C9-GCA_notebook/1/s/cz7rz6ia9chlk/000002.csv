@@ -1,0 +1,5 @@
+"0","library(dplyr)"
+"0","cl1f15 <- filter(GCA_prepost, Semester==""Fa2015"", cl==1)"
+"0","cl1f15_ES <- (mean(cl1f15$Post_tot, na.rm = TRUE) - mean(cl1f15$Pre_tot, na.rm = TRUE))/sd(cl1f15$Pre_tot, na.rm = TRUE)"
+"0","cl1f15_g <- (mean(cl1f15$Post_tot, na.rm = TRUE) - mean(cl1f15$Pre_tot, na.rm = TRUE))/(25-mean(cl1f15$Pre_tot, na.rm = TRUE))"
+"0","cl1f15gains <- c(cl1f15_ES, cl1f15_g)"
