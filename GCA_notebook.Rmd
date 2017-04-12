@@ -20,7 +20,7 @@ GCA_prepost <- subset(FSF_alldata, select=c(StudentID, Semester, cl, Pre1:Post25
 ```
 
 
-Use lapply to find means of all GCA pre and post item responses and write to new list. This code is not implemented yet
+Use lapply to find means of all GCA pre and post item responses and write to new list. Also need to do some basic item-total correlations here. This code is not implemented yet
 ```{r}
 GCA_item_Means <- lapply(3:52, mean)
 ```
@@ -34,7 +34,7 @@ GCA_prepost$Pre_tot <- Pre_tot
 GCA_prepost$Post_tot <- Post_tot
 ```
 
-##Calculate <g> and Effect Size
+##Calculate raw gain and <g>
 This code calculates raw gain and <g> for each case and appends the new vars to FSF_alldata
 ```{r}
 raw_gain <- (GCA_prepost[62] - GCA_prepost[61])
@@ -42,9 +42,11 @@ norm_gain <- raw_gain/(25 - GCA_prepost[61])
 GCA_prepost$gain <- raw_gain
 GCA_prepost$norm_gain <- norm_gain
 ```
+Could follow this up with some scatterplots or histograms of gains within each class
+
 
 ##Filter and calculate class <g> and ES
-Now filter (using dplyr) FSF_alldata for cl = 1 and Semester = Fa2015 from GCA_prepost, then calculate ES and g for this class (class 1 from Fall 2015)
+Now filter (using dplyr) FSF_alldata for cl = 1 and Semester = Fa2015 from GCA_prepost, then calculate ES and g (based on averaging GCA pre and psot scores- not based on averaging individual <g> and ES) for this class (class 1 from Fall 2015). CHANGE <g> TO NORM CHANGE c
 ```{r}
 library(dplyr)
 cl1f15 <- filter(GCA_prepost, Semester=="Fa2015", cl==1)
@@ -55,7 +57,7 @@ print(cl1f15gains)
 ```
 
 
-I need to make the above code a function and then use lapply to iterate over all classes and Semesters, or just increment and loop it over and over. Then write each resulting vector (e.g. cl1f15gains) to a new table. Thoughts on how to code that nicely?
+I need to make the above code a function and then use lapply(?) to iterate over all classes and Semesters, or just increment and loop it over and over. Then write each resulting vector (e.g. cl1f15gains) to a new table. Thoughts on how to code that nicely?
 
 
 ##Plot histogram of pre and post GCA for a class
@@ -91,8 +93,8 @@ print(g2)
 
 
 ##Local item <g> and ES
-Next we need to calculate pre and post totals and gains (<g>, ES) for the local items for each class
+Next we need to calculate pre and post totals and gains (<g>, ES) for the local items for each class (note that this will *not* be for Fa15 or Sp16, only Fa16 and Sp17). 
 
 ##GCA and local gain scores by learning goals
-Then we need to code new vars for GCA and local scores by learning goal, and find gains for these item groupings
+Then we need to code new vars for GCA and local items grouped by learning goal, and find gains for these item groupings.
 

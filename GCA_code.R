@@ -10,6 +10,29 @@ Post_tot <- rowSums(GCA_prepost[29:53], na.rm = TRUE)
 GCA_prepost$Pre_tot <- Pre_tot
 GCA_prepost$Post_tot <- Post_tot
 
+#define normalized change function. NEEDS WORK!
+normchange <- function(x, y)
+{
+  if (y>x) 
+  {(y-x)/(100-x)}
+  else
+  {if (y == 100 | y == 0 & x == 100 | x == 00)
+  {NA}
+    else
+    {if (y == x)
+    {0}
+      else
+      {if (y>x)
+      {(y-x)/x}
+      }}}
+}
+
+#calculate GCA pre and post %ages and normalized change c for each student, append vars to data frame
+GCA_prepost$Pre_perc <- (GCA_prepost$Pre_tot/25)*100
+GCA_prepost$Post_perc <- (GCA_prepost$Post_tot/25)*100
+GCA_prepost$norm_c <- normchange(GCA_prepost$Pre_perc, GCA_prepost$Post_perc)
+
+
 #calculate raw gain and <g> for each case and append new vars to data frame
 raw_gain <- (GCA_prepost[62] - GCA_prepost[61])
 norm_gain <- raw_gain/(25 - GCA_prepost[61]) 
@@ -66,3 +89,26 @@ g2 <- ggplot(df, aes(x = x, fill = x2)) +
   scale_fill_brewer(palette="Accent")
 print(g2)
 
+##
+reg1 <- lm(norm_gain~Pre_tot, data = cl1f15)
+summary(reg1)
+prenorm1 <- ggplot(cl1f15, aes(x = Pre_tot, y = norm_gain)) + 
+            geom_point(shape = 1) + geom_smooth(method = lm, formula = y~x, color = "darkred", fill = "blue") +
+            (ggtitle("Class 1 Fall 2015 Individual <g> vs Pre-test score"))
+print(prenorm1)
+
+#normalized change function
+normchange <- function(pre, post)
+{
+  if (post>pre) 
+  {(post-pre)/(100-pre)}
+  else
+  {if (post&pre == 100 | 0)
+  {NA}
+    else
+    {if (post == pre)
+    {0}
+      else
+      {if (post>pre)
+          {(post-pre)/pre}}}}
+}
