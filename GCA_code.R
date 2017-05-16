@@ -22,7 +22,7 @@ normchange <- function(x, y)
     {if (y == x)
     {0}
       else
-      {if (y>x)
+      {if (y<x)
       {(y-x)/x}
       }}}
 }
