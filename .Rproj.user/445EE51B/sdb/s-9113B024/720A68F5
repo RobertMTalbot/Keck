@@ -1,0 +1,29 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1495039229990.000,
+    "dirty" : false,
+    "encoding" : "",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "720A68F5",
+    "lastKnownWriteTime" : 8245937412990856303,
+    "last_content_update" : 1495039229990,
+    "path" : null,
+    "project_path" : null,
+    "properties" : {
+        "cacheKey" : "FFBACA4D",
+        "caption" : "X1516GCA_FA",
+        "contentUrl" : "grid_resource/gridviewer.html?env=&obj=X1516GCA_FA&cache_key=FFBACA4D",
+        "displayedObservations" : "2346",
+        "environment" : "",
+        "object" : "X1516GCA_FA",
+        "preview" : "0",
+        "totalObservations" : "2346",
+        "variables" : "25"
+    },
+    "relative_order" : 7,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_dataframe"
+}

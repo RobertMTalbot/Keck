@@ -4,6 +4,7 @@ author: "Bud Talbot, Derek Briggs"
 output:
   html_notebook: default
   html_document: default
+  pdf_document: default
 ---
 
 ##Load data
@@ -98,4 +99,39 @@ Next we need to calculate pre and post totals and gains (<g>, ES) for the local 
 
 ##GCA and local gain scores by learning goals
 Then we need to code new vars for GCA and local items grouped by learning goal, and find gains for these item groupings.
+
+##Initial Factor Analysis exploration of GCA data. 
+The X1516GCA_FA data set is all Fall 15 and Spring 16 pre and post GCA scores imported. First look at corPlot:
+
+```{r}
+library(psych)
+library(GPArotation)
+corPlot(X1516GCA_FA)
+```
+
+run a parallel analysis to determine number of factors
+
+```{r}
+fa.parallel((X1516GCA_FA))
+```
+
+run PCA with 4 factors, no rotation
+
+```{r}
+principal(X1516GCA_FA, nfactors=4, rotate = "none")
+```
+
+
+How does that compare to a Factor analysis? Now run factor analysis specifying 4 factors (based on scree plot), default rotation (oblimin), do not umpute values for missing, use minimum residual factoring method (default) and view loading matrix
+
+```{r}
+fa(X1516GCA_FA, nfactors = 4)
+```
+
+make scree plot
+
+```{r}
+scree(X1516GCA_FA, factors=TRUE)
+```
+
 
