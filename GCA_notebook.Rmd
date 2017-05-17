@@ -122,7 +122,7 @@ principal(X1516GCA_FA, nfactors=4, rotate = "none")
 ```
 
 
-How does that compare to a Factor analysis? Now run factor analysis specifying 4 factors (based on scree plot), default rotation (oblimin), do not umpute values for missing, use minimum residual factoring method (default) and view loading matrix
+Now compare to a factor analysis specifying 4 factors (based on scree plot), default rotation (oblimin), do not impute values for missing, use minimum residual factoring method (default) and view loading matrix
 
 ```{r}
 fa(X1516GCA_FA, nfactors = 4)
