@@ -1,0 +1,43 @@
+---
+title: "Principal Components and Factor Analysis"
+author: "Bud Talbot"
+output:
+  pdf_document: default
+  html_notebook: default
+  html_document: default
+---
+*18 May 2017*
+
+##Initial Principal Components and Factor Analysis of GCA data. 
+The X1516GCA_FA data set is all Fall 15 and Spring 16 pre and post GCA scores (2346 case). 
+
+```{r}
+X1516GCA_FA <- read.csv(file = "1516GCA.csv", header = TRUE)
+```
+
+Let's first look at the correlaton matrix for GCA items:
+
+```{r}
+library(psych)
+library(GPArotation)
+corPlot(X1516GCA_FA)
+```
+
+One way to determine the number of factors is to compare the solution to a set of simulated random data with properties similar to the GCA data set (a parallel analysis). Running this parallel analysis also produces the scree plot:
+
+```{r}
+fa.parallel((X1516GCA_FA))
+```
+
+The parallel analysis suggest 3 components and 6 factors but the scree plot shows maybe 4 components with eigenvalue > 1, so run PCA (descriptive model) with 4 factors, varimax rotation
+
+```{r}
+principal(X1516GCA_FA, nfactors=4, rotate = "varimax")
+```
+
+Now compare to a factor analysis (structural model) specifying 4 factors, varimax rotation, do not impute values for missing, use minimum residual factoring method (default) and view loading matrix
+
+```{r}
+fa(X1516GCA_FA, nfactors = 4, rotate = "varimax")
+```
+

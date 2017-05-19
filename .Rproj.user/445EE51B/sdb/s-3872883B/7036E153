@@ -1,0 +1,22 @@
+{
+    "collab_server" : "",
+    "contents" : "---\ntitle: \"Principal Components and Factor Analysis\"\nauthor: \"Bud Talbot\"\noutput:\n  pdf_document: default\n  html_notebook: default\n  html_document: default\n---\n*18 May 2017*\n\n##Initial Principal Components and Factor Analysis of GCA data. \nThe X1516GCA_FA data set is all Fall 15 and Spring 16 pre and post GCA scores (2346 case). \n\n```{r}\nX1516GCA_FA <- read.csv(file = \"1516GCA.csv\", header = TRUE)\n```\n\nLet's first look at the correlaton matrix for GCA items:\n\n```{r}\nlibrary(psych)\nlibrary(GPArotation)\ncorPlot(X1516GCA_FA)\n```\n\nOne way to determine the number of factors is to compare the solution to a set of simulated random data with properties similar to the GCA data set (a parallel analysis). Running this parallel analysis also produces the scree plot:\n\n```{r}\nfa.parallel((X1516GCA_FA))\n```\n\nThe parallel analysis suggest 3 components and 6 factors but the scree plot shows maybe 4 components with eigenvalue > 1, so run PCA (descriptive model) with 4 factors, varimax rotation\n\n```{r}\nprincipal(X1516GCA_FA, nfactors=4, rotate = \"varimax\")\n```\n\nNow compare to a factor analysis (structural model) specifying 4 factors, varimax rotation, do not impute values for missing, use minimum residual factoring method (default) and view loading matrix\n\n```{r}\nfa(X1516GCA_FA, nfactors = 4, rotate = \"varimax\")\n```\n\n",
+    "created" : 1495138098537.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "336624621",
+    "id" : "7036E153",
+    "lastKnownWriteTime" : 1495152469,
+    "last_content_update" : 1495152469068,
+    "path" : "C:/Users/talbotr/Desktop/Keck/PCA_FA.Rmd",
+    "project_path" : "PCA_FA.Rmd",
+    "properties" : {
+        "chunk_output_type" : "inline",
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 8,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_markdown"
+}

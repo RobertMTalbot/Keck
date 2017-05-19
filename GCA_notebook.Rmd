@@ -115,10 +115,10 @@ run a parallel analysis to determine number of factors
 fa.parallel((X1516GCA_FA))
 ```
 
-run PCA with 4 factors, no rotation
+run PCA with 4 factors, varimax rotation
 
 ```{r}
-principal(X1516GCA_FA, nfactors=4, rotate = "none")
+principal(X1516GCA_FA, nfactors=4, rotate = "varimax")
 ```
 
 
