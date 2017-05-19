@@ -15,7 +15,7 @@ The X1516GCA_FA data set is all Fall 15 and Spring 16 pre and post GCA scores (2
 X1516GCA_FA <- read.csv(file = "1516GCA.csv", header = TRUE)
 ```
 
-Let's first look at the correlaton matrix for GCA items:
+First look at the correlaton matrix for GCA items:
 
 ```{r}
 library(psych)
@@ -29,15 +29,15 @@ One way to determine the number of factors is to compare the solution to a set o
 fa.parallel((X1516GCA_FA))
 ```
 
-The parallel analysis suggest 3 components and 6 factors but the scree plot shows maybe 4 components with eigenvalue > 1, so run PCA (descriptive model) with 4 factors, varimax rotation
+The parallel analysis suggest 3 components and 6 factors and the scree plot shows 3 components with eigenvalue > 1, so run PCA (descriptive model) with 3 factors, varimax rotation
 
 ```{r}
-principal(X1516GCA_FA, nfactors=4, rotate = "varimax")
+principal(X1516GCA_FA, nfactors=3, rotate = "varimax")
 ```
 
-Now compare to a factor analysis (structural model) specifying 4 factors, varimax rotation, do not impute values for missing, use minimum residual factoring method (default) and view loading matrix
+Now compare to a factor analysis (structural model) specifying 3 factors, varimax rotation, do not impute values for missing, use minimum residual factoring method (default) and view loading matrix
 
 ```{r}
-fa(X1516GCA_FA, nfactors = 4, rotate = "varimax")
+fa(X1516GCA_FA, nfactors = 3, rotate = "varimax")
 ```
 
