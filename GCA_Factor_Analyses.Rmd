@@ -1,0 +1,114 @@
+---
+title: "Factor Analysis of GCA"
+author: "Derek Briggs"
+date: "May 18, 2017"
+output:
+  pdf_document: default
+  html_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Data
+
+I'm going to break this data into two sets, one for EFA, one for CFA
+
+```{r}
+library(psych)
+d<-read.csv("1516GCA.csv")
+x<-seq(from=1, to=nrow(d), by=2)
+y<-seq(from=2, to=nrow(d), by=2)
+d1<-d[x,]
+d2<-d[y,]
+df<-as.data.frame(d)
+```
+
+##Item Descriptives and Reliability
+
+Let's have a look at item descriptives and alpha
+
+```{r}
+alpha(df,na.rm=T)
+```
+One thing to notice here is that item 19 stands out as having by far the lowest correlations with total score based on all other GCA items.
+
+##Dimensionality Analyses
+
+
+
+```{r}
+cm<-cor(d1,use="complete.obs")
+ev <- eigen(cm)
+library(corrplot)
+cor.plot(cm)
+```
+
+Let's run a Parallel Analysis Scree Plot
+```{r}
+fa.parallel(cm, n.obs = nrow(d1), fm="minres", fa="both", 
+            main = "Parallel Analysis Scree Plots",
+            n.iter=100, error.bars=FALSE, SMC=FALSE,
+            ylabel=NULL, show.legend=TRUE)
+```
+So based on principal components could make a case for about 2; based on factors could make a case for up to 4 or 5. I'm going to run EFA with 2, 3 and 4 factors. 
+
+Starting with 2 Factors
+
+```{r}
+mod1<-fa(d1,nfactors=2,rotate="Promax",fm="pa",cor="tet")
+print(mod1$loadings,cut=.3)
+mod1$rms
+```
+Not bad. We have a Heywood case due to item 10, and a cross-loading for items 24. But root mean residual is just .04. This solution explains about 32% of item covariance. Notice also that three items don't have loadings > .3 on either factor (items 2, 3 and 25). Let's try 3 factors.
+
+```{r}
+mod2<-fa(d1,nfactors=3,rotate="Promax",fm="pa",cor="tet")
+print(mod2$loadings,cut=.3)
+mod2$rms
+```
+The 3 factor solution explains a little more covariance, reduces root mean residual from .043 to .038. Still getting that Heywood case. Also notice that items 2, 3 and 8 don't have loadings > .3. With three factors we get a lot more cross-loadings that show up--tricky to interpret. Item 19 now shows up as a problem. Lastly, let's try 4 factors.
+```{r}
+mod3<-fa(d1,nfactors=4,rotate="Promax",fm="pa",cor="tet")
+print(mod3$loadings,cut=.3)
+mod3$rms
+```
+OK, so this is interesting. With the 4 factor solution we no longer have the Heywood case, but now the cumulative proportion of variance explained is lower than it was in the 3 factor solution! Root mean residual is down to .033. But notice that only item 19 loads on the 4th factor. We also now lose item 22 on top of 2, 3 and 8. Here's a visualization
+
+```{r}
+cor.plot(mod3)
+```
+I'm going to try specifying a CFA model based on results from the two factor EFA.  I'm gonna drop item 19 and not only keep strongest factor loading for each item.
+
+## CFA
+
+```{r }
+library("lavaan")
+fac3_mod <- 
+'factor1 =~ GCA1 + GCA4 + GCA7 + GCA8 + GCA9
++ GCA13 + GCA17 + GCA21 + GCA24
+factor2 =~ GCA6 + GCA10 + GCA11 + GCA12 + GCA14
++ GCA15 + GCA16 + GCA18 + GCA20 + GCA22 + GCA23 
++ GCA24'
+fac3mod <- cfa(model = fac3_mod, data = d2, ordered = names(d2) ,estimator = "DWLS", se = "robust", test = "scaled.shifted", std.lv = TRUE)
+summary(fac3mod,fit.measures = TRUE)
+mi <- modindices(fac3mod)
+mi[mi$op == "=~",]
+```
+The fit of this model is pretty good. Of course, a problem is that I've played around with other possibilities that also fit equally well! Next step is to do a CFA based on mapping of items to intended learning objectives (1-8). Need at least two items per factor, so dropping GCA25 for now.
+
+```{r }
+fac7_mod <- 
+'factor1 =~ GCA3 + GCA6 + GCA10 + GCA14 + GCA16 + GCA18
+factor2 =~ GCA1 + GCA8 + GCA17 
+factor3 =~ GCA2 + GCA7 + GCA20 + GCA22 + GCA23 
+factor4 =~ GCA13 + GCA24
+factor5 =~ GCA5 + GCA9 +GCA19
+factor6 =~ GCA4 + GCA11 + GCA12
+factor7 =~ GCA15 + GCA21
+'
+fac7mod <- cfa(model = fac7_mod, data = d2, ordered = names(d2) ,estimator = "DWLS", se = "robust", test = "scaled.shifted", std.lv = TRUE)
+summary(fac7mod,fit.measures = TRUE)
+inspect(fac7mod,"cov.lv")
+```
