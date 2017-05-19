@@ -12,7 +12,7 @@ output:
 The X1516GCA_FA data set is all Fall 15 and Spring 16 pre and post GCA scores (2346 case). 
 
 ```{r}
-X1516GCA_FA <- read.csv(file = "1516GCA.csv", header = TRUE)
+X1516GCA_FA <- read.csv(file = "GCApost.csv", header = TRUE)
 ```
 
 First look at the correlaton matrix for GCA items:
