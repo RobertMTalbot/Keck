@@ -1,0 +1,22 @@
+{
+    "collab_server" : "",
+    "contents" : "---\ntitle: \"Principal Components and Factor Analysis\"\nauthor: \"Bud Talbot\"\noutput:\n  pdf_document: default\n  html_notebook: default\n  html_document: default\n---\n*18 May 2017*\n\n##Initial Principal Components and Factor Analysis of GCA data. \nThe X1516GCA_FA data set is all Fall 15 and Spring 16 pre and post GCA scores (2346 case). \n\n```{r}\nX1516GCA_FA <- read.csv(file = \"GCApost.csv\", header = TRUE)\n```\n\nFirst look at the correlaton matrix for GCA items:\n\n```{r}\nlibrary(psych)\nlibrary(GPArotation)\ncorPlot(X1516GCA_FA)\n```\n\nOne way to determine the number of factors is to compare the solution to a set of simulated random data with properties similar to the GCA data set (a parallel analysis). Running this parallel analysis also produces the scree plot:\n\n```{r}\nfa.parallel((X1516GCA_FA))\n```\n\nThe parallel analysis suggest 3 components and 5 factors and the scree plot shows 3-4 components with eigenvalue > 1, so run PCA (descriptive model) with 3 factors, varimax rotation\n\n```{r}\nprincipal(X1516GCA_FA, nfactors=3, rotate = \"varimax\")\n```\n\nNow compare to PCA with 4 factors:\n\n```{r}\nprincipal(X1516GCA_FA, nfactors=4, rotate = \"varimax\")\n```\n\n4 factors only accounts for 4% more variance than the 3 factor PCA. But look at communalities for GCA3 in each solution (0.081 in 3 factor, 0.75 in 4 factor)?\n\nNow compare the PCAs to a factor analysis (structural model) specifying 3 factors, varimax rotation, do not impute values for missing, use minimum residual factoring method (default) and view loading matrix\n\n```{r}\nfa(X1516GCA_FA, nfactors = 3, rotate = \"varimax\")\n```\n\nAnd finally run the FA with 4 factors:\n\n```{r}\nfa(X1516GCA_FA, nfactors = 4, rotate = \"varimax\")\n```\n\nThe 4 factor FA only accounts for 1% more variance than the 3 factor FA, and is likely harder to interpret. Also the communalities (variance accounted for in each item by all factors in the solution) does not increase much for 4 factors versus 3. \n",
+    "created" : 1495138098537.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "4085216102",
+    "id" : "7036E153",
+    "lastKnownWriteTime" : 1495213208,
+    "last_content_update" : 1495213208938,
+    "path" : "C:/Users/talbotr/Desktop/Keck/PCA_FA.Rmd",
+    "project_path" : "PCA_FA.Rmd",
+    "properties" : {
+        "chunk_output_type" : "inline",
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 8,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_markdown"
+}

@@ -4,6 +4,7 @@ author: "Bud Talbot, Derek Briggs"
 output:
   html_notebook: default
   html_document: default
+  pdf_document: default
 ---
 
 ##Load data
@@ -46,7 +47,7 @@ Could follow this up with some scatterplots or histograms of gains within each c
 
 
 ##Filter and calculate class <g> and ES
-Now filter (using dplyr) FSF_alldata for cl = 1 and Semester = Fa2015 from GCA_prepost, then calculate ES and g (based on averaging GCA pre and psot scores- not based on averaging individual <g> and ES) for this class (class 1 from Fall 2015). CHANGE <g> TO NORM CHANGE c
+Now filter (using dplyr) FSF_alldata for cl = 1 and Semester = Fa2015 from GCA_prepost, then calculate ES and g (based on averaging GCA pre and psot scores- not based on averaging individual <g> and ES) for this class (class 1 from Fall 2015). 
 ```{r}
 library(dplyr)
 cl1f15 <- filter(GCA_prepost, Semester=="Fa2015", cl==1)
@@ -56,6 +57,7 @@ cl1f15gains <- c(cl1f15_ES, cl1f15_g)
 print(cl1f15gains)
 ```
 
+NOTE ON ABOVE: CHANGE <g> TO NORM CHANGE c ONCE THE FUNCTION IS WORKING PROPERLY
 
 I need to make the above code a function and then use lapply(?) to iterate over all classes and Semesters, or just increment and loop it over and over. Then write each resulting vector (e.g. cl1f15gains) to a new table. Thoughts on how to code that nicely?
 
@@ -97,4 +99,39 @@ Next we need to calculate pre and post totals and gains (<g>, ES) for the local 
 
 ##GCA and local gain scores by learning goals
 Then we need to code new vars for GCA and local items grouped by learning goal, and find gains for these item groupings.
+
+##Initial Factor Analysis exploration of GCA data. 
+The X1516GCA_FA data set is all Fall 15 and Spring 16 pre and post GCA scores imported. First look at corPlot:
+
+```{r}
+library(psych)
+library(GPArotation)
+corPlot(X1516GCA_FA)
+```
+
+run a parallel analysis to determine number of factors
+
+```{r}
+fa.parallel((X1516GCA_FA))
+```
+
+run PCA with 4 factors, varimax rotation
+
+```{r}
+principal(X1516GCA_FA, nfactors=4, rotate = "varimax")
+```
+
+
+Now compare to a factor analysis specifying 4 factors (based on scree plot), default rotation (oblimin), do not impute values for missing, use minimum residual factoring method (default) and view loading matrix
+
+```{r}
+fa(X1516GCA_FA, nfactors = 4)
+```
+
+make scree plot
+
+```{r}
+scree(X1516GCA_FA, factors=TRUE)
+```
+
 
