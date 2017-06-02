@@ -15,7 +15,7 @@ All.data <- read_csv("C:/Users/talbotr/Desktop/Keck/All_data.csv", na = "NA")
 ```
 
 ##Filter and calculate class level descriptives
-Now filter (using dplyr) All.data for cl = 1, then find pre and post GCA mean, SD, %NA (using psych describe). Then calculate gains two ways: once with na.rm = TRUE and once with na.rm =  FALSE, and calculate Effect Size
+Now filter (using dplyr) All.data for cl = 1, then find pre and post GCA mean, SD, %NA (using psych describe). Then calculate gains two ways: once with na.rm = TRUE and once with na.rm =  FALSE, and calculate Effect Size. FOR ES FIND AND USE OVERALL GCA POST (?) SD
 
 ```{r}
 library(dplyr)
