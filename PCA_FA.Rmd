@@ -29,7 +29,7 @@ One way to determine the number of factors is to compare the solution to a set o
 fa.parallel((X1516GCA_FA))
 ```
 
-The parallel analysis suggest 3 components and 5 factors and the scree plot shows 3-4 components with eigenvalue > 1, so run PCA (descriptive model) with 3 factors, varimax rotation
+The parallel analysis suggest 3 components and 8(!) factors and the scree plot shows 3-4 components with eigenvalue > 1, so run PCA (descriptive model) with 3 factors, varimax rotation
 
 ```{r}
 principal(X1516GCA_FA, nfactors=3, rotate = "varimax")

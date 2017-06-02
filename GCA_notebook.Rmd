@@ -8,130 +8,52 @@ output:
 ---
 
 ##Load data
-Load data from GCA_ALL_DATA_fa15_sp16_fa16_03302017, name the new data frame FSF_alldata (FSF = "Fall Spring Fall")
+Load the new complete data set, name it All.data
 ```{r}
 library(readr)
-FSF_alldata <- read_csv("C:/Users/talbotr/Desktop/Keck/FSF_alldata.csv")
+All.data <- read_csv("C:/Users/talbotr/Desktop/Keck/All_data.csv", na = "NA")
 ```
 
-##Subset data
-This code subsets GCA pre and post responses from FSF all data- including cl, Sex and ethnicity codes
-```{r}
-GCA_prepost <- subset(FSF_alldata, select=c(StudentID, Semester, cl, Pre1:Post25, Sex:Demo4White5))
-```
-
-
-Use lapply to find means of all GCA pre and post item responses and write to new list. Also need to do some basic item-total correlations here. This code is not implemented yet
-```{r}
-GCA_item_Means <- lapply(3:52, mean)
-```
-
-##Calculate GCA Pre and Post total scores
-This code calculates GCA pre and post total scores for each case adds the new vars to  FSF_alldata
-```{r}
-Pre_tot <- rowSums(GCA_prepost[4:28], na.rm = TRUE)
-Post_tot <- rowSums(GCA_prepost[29:53], na.rm = TRUE)
-GCA_prepost$Pre_tot <- Pre_tot
-GCA_prepost$Post_tot <- Post_tot
-```
-
-##Calculate raw gain and <g>
-This code calculates raw gain and <g> for each case and appends the new vars to FSF_alldata
-```{r}
-raw_gain <- (GCA_prepost[62] - GCA_prepost[61])
-norm_gain <- raw_gain/(25 - GCA_prepost[61]) 
-GCA_prepost$gain <- raw_gain
-GCA_prepost$norm_gain <- norm_gain
-```
-Could follow this up with some scatterplots or histograms of gains within each class
-
-
-##Filter and calculate class <g> and ES
-Now filter (using dplyr) FSF_alldata for cl = 1 and Semester = Fa2015 from GCA_prepost, then calculate ES and g (based on averaging GCA pre and psot scores- not based on averaging individual <g> and ES) for this class (class 1 from Fall 2015). 
+##Filter and calculate class level descriptives
+Now filter (using dplyr) All.data for cl = 1, then find pre and post GCA mean, SD, %NA (using psych describe). Then calculate gains two ways: once with na.rm = TRUE and once with na.rm =  FALSE
 ```{r}
 library(dplyr)
-cl1f15 <- filter(GCA_prepost, Semester=="Fa2015", cl==1)
-cl1f15_ES <- (mean(cl1f15$Post_tot, na.rm = TRUE) - mean(cl1f15$Pre_tot, na.rm = TRUE))/sd(cl1f15$Pre_tot, na.rm = TRUE)
-cl1f15_g <- (mean(cl1f15$Post_tot, na.rm = TRUE) - mean(cl1f15$Pre_tot, na.rm = TRUE))/(25-mean(cl1f15$Pre_tot, na.rm = TRUE))
-cl1f15gains <- c(cl1f15_ES, cl1f15_g)
-print(cl1f15gains)
+library(psych)
+cl1 <- filter(All.data, cl==1)
+cl1.descr <- describe(cl1[114:115])
+cl1_g1 <- (mean(cl1$Post.total, na.rm = TRUE) - mean(cl1$Pre.total, na.rm = TRUE))/(25-mean(cl1$Pre.total, na.rm = TRUE))
+cl1_g2 <- (mean(cl1$Post.total, na.rm = FALSE) - mean(cl1$Pre.total, na.rm = FALSE))/(25-mean(cl1$Pre.total, na.rm = FALSE))
+print(cl1.descr)
+print(cl1_g1)
+print(cl1_g2)
 ```
 
-NOTE ON ABOVE: CHANGE <g> TO NORM CHANGE c ONCE THE FUNCTION IS WORKING PROPERLY
 
-I need to make the above code a function and then use lapply(?) to iterate over all classes and Semesters, or just increment and loop it over and over. Then write each resulting vector (e.g. cl1f15gains) to a new table. Thoughts on how to code that nicely?
-
-
-##Plot histogram of pre and post GCA for a class
-Plot a histogram of class 1 Fall 2015 pre and post GCA scores
+##Plot histogram of pre and post GCA for class 1
+Plot a histogram of class 1 pre and post GCA scores
 ```{r}
 library(ggplot2)
 library(RColorBrewer)
-df <-  data.frame(x = cl1f15$Pre_tot, x2 = cl1f15$Post_tot)
+df <-  data.frame(x = cl1$Pre.total, x2 = cl1$Post.total)
 
 g <-  ggplot(df, aes(x)) + geom_histogram(aes(x = x, y = ..count..),
-                  binwidth = 1, color="black", fill="blue", alpha=0.5) + 
-  geom_histogram( aes(x = x2, y = -..count..), 
-                  binwidth = 1, color="black", fill= "green", alpha=0.5) +
-  scale_x_continuous(name = "GCA Pre/Post Score", 
-                     limits=c(0, 25)) +
-  scale_y_continuous(name = "Count") +
-  ggtitle("Class 1 Fall 2015 GCA Pre and Post Scores")
-print(g)
-```
-
-Or this if we don't want the post distribution inverted
-```{r}
-g2 <-  ggplot(df, aes(x)) + geom_histogram(aes(x = x, y = ..count..),
                   binwidth = 1, color="black", fill="blue", alpha=0.5) + 
   geom_histogram( aes(x = x2, y = ..count..), 
                   binwidth = 1, color="black", fill= "green", alpha=0.5) +
   scale_x_continuous(name = "GCA Pre/Post Score", 
                      limits=c(0, 25)) +
   scale_y_continuous(name = "Count") +
-  ggtitle("Class 1 Fall 2015 GCA Pre and Post Scores")
-print(g2)
+  ggtitle("Class 1 GCA Pre and Post Scores")
+print(g)
 ```
 
+I need to make the above code a function and then use lapply(?) to iterate over all classes, or just increment and loop it over and over. Then write each resulting object (e.g. cl1.descr, cl1_g1, etc) to a new table. Thoughts on how to code that nicely?
 
 ##Local item <g> and ES
-Next we need to calculate pre and post totals and gains (<g>, ES) for the local items for each class (note that this will *not* be for Fa15 or Sp16, only Fa16 and Sp17). 
+Next we need to calculate pre and post totals and gains (<g>) for the local items for each class (note that this will not be for Fa15 or Sp16, only Fa16 and Sp17). 
 
 ##GCA and local gain scores by learning goals
 Then we need to code new vars for GCA and local items grouped by learning goal, and find gains for these item groupings.
 
-##Initial Factor Analysis exploration of GCA data. 
-The X1516GCA_FA data set is all Fall 15 and Spring 16 pre and post GCA scores imported. First look at corPlot:
-
-```{r}
-library(psych)
-library(GPArotation)
-corPlot(X1516GCA_FA)
-```
-
-run a parallel analysis to determine number of factors
-
-```{r}
-fa.parallel((X1516GCA_FA))
-```
-
-run PCA with 4 factors, varimax rotation
-
-```{r}
-principal(X1516GCA_FA, nfactors=4, rotate = "varimax")
-```
-
-
-Now compare to a factor analysis specifying 4 factors (based on scree plot), default rotation (oblimin), do not impute values for missing, use minimum residual factoring method (default) and view loading matrix
-
-```{r}
-fa(X1516GCA_FA, nfactors = 4)
-```
-
-make scree plot
-
-```{r}
-scree(X1516GCA_FA, factors=TRUE)
-```
 
 
