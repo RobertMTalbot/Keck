@@ -15,7 +15,8 @@ All.data <- read_csv("C:/Users/talbotr/Desktop/Keck/All_data.csv", na = "NA")
 ```
 
 ##Filter and calculate class level descriptives
-Now filter (using dplyr) All.data for cl = 1, then find pre and post GCA mean, SD, %NA (using psych describe). Then calculate gains two ways: once with na.rm = TRUE and once with na.rm =  FALSE
+Now filter (using dplyr) All.data for cl = 1, then find pre and post GCA mean, SD, %NA (using psych describe). Then calculate gains two ways: once with na.rm = TRUE and once with na.rm =  FALSE, and calculate Effect Size
+
 ```{r}
 library(dplyr)
 library(psych)
@@ -23,9 +24,17 @@ cl1 <- filter(All.data, cl==1)
 cl1.descr <- describe(cl1[114:115])
 cl1_g1 <- (mean(cl1$Post.total, na.rm = TRUE) - mean(cl1$Pre.total, na.rm = TRUE))/(25-mean(cl1$Pre.total, na.rm = TRUE))
 cl1_g2 <- (mean(cl1$Post.total, na.rm = FALSE) - mean(cl1$Pre.total, na.rm = FALSE))/(25-mean(cl1$Pre.total, na.rm = FALSE))
+cl1.ES <- (mean(cl1$Post.total, na.rm = TRUE) - mean(cl1$Pre.total, na.rm = TRUE))/(sd(cl1$Pre.total))
 print(cl1.descr)
 print(cl1_g1)
 print(cl1_g2)
+print(cl1.ES)
+```
+
+
+Item statistics on each of the GCA pre and post items for this class.
+```{r}
+alpha(cl1[64:113], na.rm = TRUE)
 ```
 
 
@@ -47,10 +56,11 @@ g <-  ggplot(df, aes(x)) + geom_histogram(aes(x = x, y = ..count..),
 print(g)
 ```
 
-I need to make the above code a function and then use lapply(?) to iterate over all classes, or just increment and loop it over and over. Then write each resulting object (e.g. cl1.descr, cl1_g1, etc) to a new table. Thoughts on how to code that nicely?
+Derek: I need to make the above code iterate over all classes, or just increment and loop it over and over. Then write each resulting object (e.g. cl1.descr, cl1_g1, etc) to a new table. Thoughts on how to code that nicely? I could just kludge it by copying the code over and over and editing, but that seems sloppy.
 
-##Local item <g> and ES
-Next we need to calculate pre and post totals and gains (<g>) for the local items for each class (note that this will not be for Fa15 or Sp16, only Fa16 and Sp17). 
+##Local item <g> 
+Next we need to calculate pre and post totals and gains (<g>) for the local items for each class. Note that this will not be for Fa15 or Sp16, only Fa16 and Sp17. So only classes 11, 12, 13, 14, 15, 17, 18, 19, 20. 
+
 
 ##GCA and local gain scores by learning goals
 Then we need to code new vars for GCA and local items grouped by learning goal, and find gains for these item groupings.
