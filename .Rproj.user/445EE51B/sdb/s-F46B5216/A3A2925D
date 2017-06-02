@@ -1,0 +1,23 @@
+{
+    "collab_server" : "",
+    "contents" : "---\ntitle: \"GCA Analysis Notebook\"\nauthor: \"Bud Talbot, Derek Briggs\"\noutput:\n  html_notebook: default\n  html_document: default\n  pdf_document: default\n---\n\n##Load data\nLoad the new complete data set, name it All.data\n```{r}\nlibrary(readr)\nAll.data <- read_csv(\"C:/Users/talbotr/Desktop/Keck/All_data.csv\", na = \"NA\")\n```\n\n##Filter and calculate class level descriptives\nNow filter (using dplyr) All.data for cl = 1, then find pre and post GCA mean, SD, %NA (using psych describe). Then calculate gains two ways: once with na.rm = TRUE and once with na.rm =  FALSE\n```{r}\nlibrary(dplyr)\nlibrary(psych)\ncl1 <- filter(All.data, cl==1)\ncl1.descr <- describe(cl1[114:115])\ncl1_g1 <- (mean(cl1$Post.total, na.rm = TRUE) - mean(cl1$Pre.total, na.rm = TRUE))/(25-mean(cl1$Pre.total, na.rm = TRUE))\ncl1_g2 <- (mean(cl1$Post.total, na.rm = FALSE) - mean(cl1$Pre.total, na.rm = FALSE))/(25-mean(cl1$Pre.total, na.rm = FALSE))\nprint(cl1.descr)\nprint(cl1_g1)\nprint(cl1_g2)\n```\n\n\n##Plot histogram of pre and post GCA for class 1\nPlot a histogram of class 1 pre and post GCA scores\n```{r}\nlibrary(ggplot2)\nlibrary(RColorBrewer)\ndf <-  data.frame(x = cl1$Pre.total, x2 = cl1$Post.total)\n\ng <-  ggplot(df, aes(x)) + geom_histogram(aes(x = x, y = ..count..),\n                  binwidth = 1, color=\"black\", fill=\"blue\", alpha=0.5) + \n  geom_histogram( aes(x = x2, y = ..count..), \n                  binwidth = 1, color=\"black\", fill= \"green\", alpha=0.5) +\n  scale_x_continuous(name = \"GCA Pre/Post Score\", \n                     limits=c(0, 25)) +\n  scale_y_continuous(name = \"Count\") +\n  ggtitle(\"Class 1 GCA Pre and Post Scores\")\nprint(g)\n```\n\nI need to make the above code a function and then use lapply(?) to iterate over all classes, or just increment and loop it over and over. Then write each resulting object (e.g. cl1.descr, cl1_g1, etc) to a new table. Thoughts on how to code that nicely?\n\n##Local item <g> and ES\nNext we need to calculate pre and post totals and gains (<g>) for the local items for each class (note that this will not be for Fa15 or Sp16, only Fa16 and Sp17). \n\n##GCA and local gain scores by learning goals\nThen we need to code new vars for GCA and local items grouped by learning goal, and find gains for these item groupings.\n\n\n\n",
+    "created" : 1491520299592.000,
+    "dirty" : true,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "1876980057",
+    "id" : "A3A2925D",
+    "lastKnownWriteTime" : 1496426986,
+    "last_content_update" : 1496430112636,
+    "path" : "C:/Users/talbotr/Desktop/Keck/GCA_notebook.Rmd",
+    "project_path" : "GCA_notebook.Rmd",
+    "properties" : {
+        "chunk_output_type" : "inline",
+        "docOutlineVisible" : "0",
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 1,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_markdown"
+}

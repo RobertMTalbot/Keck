@@ -1,12 +1,21 @@
 "0","library(ggplot2)"
+"2","
+Attaching package: ‘ggplot2’
+
+"
+"2","The following objects are masked from ‘package:psych’:
+
+    %+%, alpha
+
+"
 "0","library(RColorBrewer)"
-"0","df <-  data.frame(x = cl1f15$Pre_tot, x2 = cl1f15$Post_tot)"
+"0","df <-  data.frame(x = cl1$Pre.total, x2 = cl1$Post.total)"
 "0","g <-  ggplot(df, aes(x)) + geom_histogram(aes(x = x, y = ..count..),"
 "0","                  binwidth = 1, color=""black"", fill=""blue"", alpha=0.5) + "
-"0","  geom_histogram( aes(x = x2, y = -..count..), "
+"0","  geom_histogram( aes(x = x2, y = ..count..), "
 "0","                  binwidth = 1, color=""black"", fill= ""green"", alpha=0.5) +"
 "0","  scale_x_continuous(name = ""GCA Pre/Post Score"", "
 "0","                     limits=c(0, 25)) +"
 "0","  scale_y_continuous(name = ""Count"") +"
-"0","  ggtitle(""Class 1 Fall 2015 GCA Pre and Post Scores"")"
+"0","  ggtitle(""Class 1 GCA Pre and Post Scores"")"
 "0","print(g)"
