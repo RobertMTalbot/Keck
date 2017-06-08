@@ -32,7 +32,7 @@ print(cl1.ES)
 ```
 
 
-Item statistics on each of the GCA pre and post items for this class.
+#Item statistics on each of the GCA pre and post items for this class.
 ```{r}
 alpha(cl1[64:113], na.rm = TRUE)
 ```
@@ -58,8 +58,82 @@ print(g)
 
 Derek: I need to make the above code iterate over all classes, or just increment and loop it over and over. Then write each resulting object (e.g. cl1.descr, cl1_g1, etc) to a new table. Thoughts on how to code that nicely? I could just kludge it by copying the code over and over and editing, but that seems sloppy.
 
+##Class 11 (yr 2 Fa) GCA descriptives:
+
+```{r}
+library(dplyr)
+library(psych)
+cl11 <- filter(All.data, cl==11)
+cl11.descr <- describe(cl11[114:115])
+cl11_g1 <- (mean(cl11$Post.total, na.rm = TRUE) - mean(cl11$Pre.total, na.rm = TRUE))/(25-mean(cl11$Pre.total, na.rm = TRUE))
+cl11_g2 <- (mean(cl11$Post.total, na.rm = FALSE) - mean(cl11$Pre.total, na.rm = FALSE))/(25-mean(cl11$Pre.total, na.rm = FALSE))
+cl11.ES <- (mean(cl11$Post.total, na.rm = TRUE) - mean(cl11$Pre.total, na.rm = TRUE))/(sd(cl11$Pre.total))
+print(cl11.descr)
+print(cl11_g1)
+print(cl11_g2)
+print(cl11.ES)
+```
+
+#Class 11 GCA item stats
+```{r}
+library(psych)
+alpha(cl11[64:113])
+```
+
+#Class 11 histogram
+```{r}
+library(ggplot2)
+library(RColorBrewer)
+df <-  data.frame(x = cl11$Pre.total, x2 = cl11$Post.total)
+
+g <-  ggplot(df, aes(x)) + geom_histogram(aes(x = x, y = ..count..),
+                  binwidth = 1, color="black", fill="blue", alpha=0.5) + 
+  geom_histogram( aes(x = x2, y = ..count..), 
+                  binwidth = 1, color="black", fill= "green", alpha=0.5) +
+  scale_x_continuous(name = "GCA Pre/Post Score", 
+                     limits=c(0, 25)) +
+  scale_y_continuous(name = "Count") +
+  ggtitle("Class 11 GCA Pre and Post Scores")
+print(g)
+```
+
+#Class 11 local items
+local item descriptives: MC
+```{r}
+alpha(cl11[352:357])
+```
+
+
+local item descriptives: SA
+```{r}
+alpha(cl11[370:393])
+```
+
+
 ##Local item <g> 
-Next we need to calculate pre and post totals and gains (<g>) for the local items for each class. Note that this will not be for Fa15 or Sp16, only Fa16 and Sp17. So only classes 11, 12, 13, 14, 15, 17, 18, 19, 20. 
+Now calculate pre and post totals for the local items (MC+SA) for each class. Note that this will not be for Fa15 or Sp16, only Fa16 and Sp17. So only classes 11, 12, 13, 14, 15, (there is no class 16), 17, 18, 19, 20.
+
+call these vars local.pre.tot and local.post.tot
+
+##Now calculate class level <g> and ES for local item sets. Use local item post SD in each case for ES calc.
+```{r}
+library(dplyr)
+library(psych)
+cl11 <- filter(All.data, cl==11)
+cl11.local.mc <- describe(cl11[352:357])
+cl11.local.sa <- describe(cl11[370:393])
+cl11.local.all <- describe(cl11[352:393])
+cl11.localg1 <- (mean(cl11$local.post.tot, na.rm = TRUE) - mean(cl11$local.pre.tot, na.rm = TRUE))/(??-mean(cl11$local.pre.tot, na.rm = TRUE))
+cl11.localg2 <- (mean(cl11$local.post.tot, na.rm = FALSE) - mean(cl11$local.pre.tot, na.rm = FALSE))/(??-mean(cl11$local.pre.tot, na.rm = FALSE))
+cl11.localES <- (mean(cl11$local.port.tot, na.rm = TRUE) - mean(cl11$local.pre.tot, na.rm = TRUE))/(sd(cl11$local.post.tot))
+print(cl11.local.mc)
+print(cl11.local.sa)
+print(cl11.local.all)
+print(cl11.localg1)
+print(cl11.localg2)
+print(cl11.localES)
+```
+
 
 
 ##GCA and local gain scores by learning goals
