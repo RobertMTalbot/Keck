@@ -1,0 +1,30 @@
+"0","library(readr)"
+"0","All.data <- read_csv(""C:/Users/talbotr/Desktop/Keck/All_data.csv"", na = ""NA"")"
+"2","Parsed with column specification:
+cols(
+  .default = col_integer(),
+  ID = col_character(),
+  Sem = col_character(),
+  Inst = col_character(),
+  matrix.yr2.post = col_character(),
+  time.post = col_character(),
+  cl1_fc42a_16pre = col_character(),
+  cl1_fc42b_16pre = col_character(),
+  cl1_fc42c_16pre = col_character(),
+  cl1_fc42d_16pre = col_character(),
+  cl1_fc28_16pre = col_character(),
+  cl1_fc29_16pre = col_character(),
+  cl1_fc38_16pre = col_character(),
+  cl2_me3_3arev_16pre = col_character(),
+  cl2_me3_3brev_16pre = col_character(),
+  cl2_me3_7arev_16pre = col_character(),
+  cl2_me3_7brev_16pre = col_character(),
+  cl12_me1_1 = col_character(),
+  cl12_me1_2 = col_character(),
+  cl12_me1_3 = col_character(),
+  cl12_me1_4 = col_character()
+  # ... with 318 more columns
+)
+"
+"2","See spec(...) for full column specifications.
+"

@@ -1,0 +1,4 @@
+"0","alpha(cl1[64:113], na.rm = TRUE)"
+"2","Error in alpha(cl1[64:113], na.rm = TRUE) : 
+  unused argument (na.rm = TRUE)
+"

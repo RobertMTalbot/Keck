@@ -1,0 +1,73 @@
+﻿
+# Please enter the commit message for your changes. Lines starting
+# with '#' will be ignored, and an empty message aborts the commit.
+# On branch master
+# Your branch is up-to-date with 'origin/master'.
+#
+# Changes to be committed:
+#	modified:   .RData
+#	modified:   .Rhistory
+#	modified:   .Rproj.user/445EE51B/pcs/source-pane.pper
+#	modified:   .Rproj.user/445EE51B/pcs/windowlayoutstate.pper
+#	modified:   .Rproj.user/445EE51B/pcs/workbench-pane.pper
+#	modified:   .Rproj.user/445EE51B/rmd-outputs
+#	deleted:    .Rproj.user/445EE51B/sdb/s-3872883B/7036E153
+#	deleted:    .Rproj.user/445EE51B/sdb/s-3872883B/8F2A75A2
+#	deleted:    .Rproj.user/445EE51B/sdb/s-3872883B/A3A2925D
+#	deleted:    .Rproj.user/445EE51B/sdb/s-3872883B/AD986B11
+#	deleted:    .Rproj.user/445EE51B/sdb/s-3872883B/E312608E
+#	renamed:    .Rproj.user/445EE51B/sdb/s-3872883B/6A934053 -> .Rproj.user/445EE51B/sdb/s-F46B5216/6A934053
+#	renamed:    .Rproj.user/445EE51B/sdb/s-3872883B/2F916533 -> .Rproj.user/445EE51B/sdb/s-F46B5216/7AB72D22
+#	renamed:    .Rproj.user/445EE51B/sdb/s-3872883B/8876EBB0 -> .Rproj.user/445EE51B/sdb/s-F46B5216/8876EBB0
+#	new file:   .Rproj.user/445EE51B/sdb/s-F46B5216/95CCAB51
+#	new file:   .Rproj.user/445EE51B/sdb/s-F46B5216/A3A2925D
+#	renamed:    .Rproj.user/445EE51B/sdb/s-3872883B/lock_file -> .Rproj.user/445EE51B/sdb/s-F46B5216/lock_file
+#	new file:   .Rproj.user/445EE51B/viewer-cache/2A8A3C15.Rdata
+#	deleted:    .Rproj.user/445EE51B/viewer-cache/42E0E9F0.Rdata
+#	deleted:    .Rproj.user/445EE51B/viewer-cache/4A5CF7AF.Rdata
+#	new file:   .Rproj.user/445EE51B/viewer-cache/599D8878.Rdata
+#	deleted:    .Rproj.user/445EE51B/viewer-cache/66436AAB.Rdata
+#	deleted:    .Rproj.user/445EE51B/viewer-cache/98F5FE90.Rdata
+#	modified:   .Rproj.user/shared/notebooks/4C9295C9-GCA_notebook/1/445EE51B/chunks.json
+#	deleted:    .Rproj.user/shared/notebooks/4C9295C9-GCA_notebook/1/s/c1hai8d0zdxls/000004.csv
+#	new file:   .Rproj.user/shared/notebooks/4C9295C9-GCA_notebook/1/s/c5v65i4sxk0c5/000002.csv
+#	deleted:    .Rproj.user/shared/notebooks/4C9295C9-GCA_notebook/1/s/c8gxjpsvbr29o/000008.csv
+#	deleted:    .Rproj.user/shared/notebooks/4C9295C9-GCA_notebook/1/s/c8gxjpsvbr29o/000009.metadata
+#	deleted:    .Rproj.user/shared/notebooks/4C9295C9-GCA_notebook/1/s/c8gxjpsvbr29o/000009.png
+#	deleted:    .Rproj.user/shared/notebooks/4C9295C9-GCA_notebook/1/s/c8gxjpsvbr29o/000009.snapshot
+#	deleted:    .Rproj.user/shared/notebooks/4C9295C9-GCA_notebook/1/s/cddrz8vizwgne/000004.csv
+#	deleted:    .Rproj.user/shared/notebooks/4C9295C9-GCA_notebook/1/s/cddrz8vizwgne/000005.metadata
+#	deleted:    .Rproj.user/shared/notebooks/4C9295C9-GCA_notebook/1/s/cddrz8vizwgne/000005.png
+#	deleted:    .Rproj.user/shared/notebooks/4C9295C9-GCA_notebook/1/s/cddrz8vizwgne/000005.snapshot
+#	deleted:    .Rproj.user/shared/notebooks/4C9295C9-GCA_notebook/1/s/cddrz8vizwgne/temp/000005.png
+#	deleted:    .Rproj.user/shared/notebooks/4C9295C9-GCA_notebook/1/s/celtykcnb7x4j/000002.csv
+#	deleted:    .Rproj.user/shared/notebooks/4C9295C9-GCA_notebook/1/s/celtykcnb7x4j/000003.png
+#	deleted:    .Rproj.user/shared/notebooks/4C9295C9-GCA_notebook/1/s/celtykcnb7x4j/000003.snapshot
+#	new file:   .Rproj.user/shared/notebooks/4C9295C9-GCA_notebook/1/s/cgfleel0wppx2/000002.csv
+#	deleted:    .Rproj.user/shared/notebooks/4C9295C9-GCA_notebook/1/s/cglgl9v1ms52r/00000d.metadata
+#	deleted:    .Rproj.user/shared/notebooks/4C9295C9-GCA_notebook/1/s/cglgl9v1ms52r/00000d.png
+#	deleted:    .Rproj.user/shared/notebooks/4C9295C9-GCA_notebook/1/s/cglgl9v1ms52r/00000d.snapshot
+#	modified:   .Rproj.user/shared/notebooks/4C9295C9-GCA_notebook/1/s/chunks.json
+#	deleted:    .Rproj.user/shared/notebooks/4C9295C9-GCA_notebook/1/s/cqa8bnkwxi0iw/000002.csv
+#	deleted:    .Rproj.user/shared/notebooks/4C9295C9-GCA_notebook/1/s/cqa8bnkwxi0iw/000003.metadata
+#	deleted:    .Rproj.user/shared/notebooks/4C9295C9-GCA_notebook/1/s/cqa8bnkwxi0iw/000003.png
+#	deleted:    .Rproj.user/shared/notebooks/4C9295C9-GCA_notebook/1/s/cqa8bnkwxi0iw/000003.snapshot
+#	deleted:    .Rproj.user/shared/notebooks/4C9295C9-GCA_notebook/1/s/cr4w36q3zd13k/000002.csv
+#	renamed:    .Rproj.user/shared/notebooks/4C9295C9-GCA_notebook/1/s/cglgl9v1ms52r/00000c.csv -> .Rproj.user/shared/notebooks/4C9295C9-GCA_notebook/1/s/cwtd2egwhq5bt/000002.csv
+#	renamed:    .Rproj.user/shared/notebooks/4C9295C9-GCA_notebook/1/s/celtykcnb7x4j/000003.metadata -> .Rproj.user/shared/notebooks/4C9295C9-GCA_notebook/1/s/cwtd2egwhq5bt/000003.metadata
+#	new file:   .Rproj.user/shared/notebooks/4C9295C9-GCA_notebook/1/s/cwtd2egwhq5bt/000003.png
+#	new file:   .Rproj.user/shared/notebooks/4C9295C9-GCA_notebook/1/s/cwtd2egwhq5bt/000003.snapshot
+#	deleted:    .Rproj.user/shared/notebooks/4C9295C9-GCA_notebook/1/s/cz7rz6ia9chlk/000002.csv
+#	deleted:    .Rproj.user/shared/notebooks/EAE72FB1-PCA_FA/1/445EE51B/chunks.json
+#	new file:   All_data.csv
+#	new file:   All_data.xlsx
+#
+# Changes not staged for commit:
+#	modified:   .Rproj.user/445EE51B/sdb/s-F46B5216/A3A2925D
+#	modified:   .Rproj.user/shared/notebooks/4C9295C9-GCA_notebook/1/s/chunks.json
+#	modified:   GCA_notebook.Rmd
+#	modified:   GCA_notebook.nb.html
+#	modified:   PCA_FA.Rmd
+#	modified:   PCA_FA.nb.html
+#
+
