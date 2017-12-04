@@ -1,0 +1,316 @@
+--------------------------------------------------------------------------------------------------------------
+                                 ALL ITEMS BY INSTITUTION
+--------------------------------------------------------------------------------------------------------------
+
+# Item by Institution
+#  UNIVERSITY OF COLORADO 
+
+# MCDB2150_JK
+
+CU.JK <- c("cl7_fc26", "cl7_fc27", "cl7_fc28", "cl7_fc29", "cl7_fc30", "cl7_fc31", "cl7_fc32",
+           "cl7_fc33", "cl7_fc34", "cl7_fc35", "cl7_fc36", "cl7_fc37", "cl7_fc38", "cl7_fc39",              
+           "cl7_fc40", "cl7_fcsa1a", "cl7_fcsa1b", "cl7_fcsa1c", "cl7_fcsa1d", "cl7_fcsa2a",
+           "cl7_fcsa2b", "cl7_fcsa2c", "cl7_fcsa3a", "cl7_fcsa3b", "cl7_fcsa3c", "cl7_fcsa3d",            
+           "cl7_fcsa4a", "cl7_fcsa4b", "cl7_fcsa5a", "cl7_fcsa5b", "cl7_fcsa5c", "cl7_fcsa6a",
+           "cl7_fcsa6b", "cl7_fcsa6c", "cl7_fcsa6d", "cl7_fcsa6e", "cl11_fcmc26", "cl11_fcmc27",
+           "cl17_fcmc3", "cl17_fcmc4" , "cl17_fcsa1a" , "cl17_fcsa1b" , "cl17_fcsa1c", "cl17_fcsa1d" , 
+           "cl17_fcsa1e", "cl17_fcsa1f" , "cl17_fcsa3a","cl17_fcsa3b", "cl17_fcsa3c" , "cl17_fcsa5",
+           "cl17_fcsa2a", 	"cl17_fcsa2b",	"cl17_fcsa2c",	"cl17_fcsa2d")	
+
+# MCDB2150_KK
+
+CU.KK <-  c("cl1_fc26" , "cl1_fc27","cl1_fc28",              
+            "cl1_fc29" ,"cl1_fc30", "cl1_fc31", "cl1_fc32" ,             
+            "cl1_fc33", "cl1_fc34" ,  "cl1_fc35"  , "cl1_fc36",         
+            "cl1_fc37" ,"cl1_fc38" , "cl1_fc39" ,  "cl1_fc40" ,             
+            "cl1_fc41" , "cl1_fc42"  , "cl1_fc43"  , "cl1_fc44"  ,            
+            "cl1_fc45" ,  "cl7_fc38","cl11_fcmc26" , "cl11_fcmc27", "cl11_fcmc28" ,
+            "cl11_fcmc29", "cl11_fcmc31" , "cl11_fcmc38", "cl11_fcsa3a" , "cl11_fcsa3b" ,          
+            "cl11_fcsa3c", "cl11_fcsa4_1"  , "cl11_fcsa4_2"  ,"cl11_fcsa4_3" ,         
+            "cl11_fcsa4_4", "cl11_fcsa5a"   , "cl11_fcsa5b" , "cl11_fcsa5c",           
+            "cl11_fcsa6a" , "cl11_fcsa6b"   ,  "cl11_fcsa7a"  , "cl11_fcsa7b",           
+            "cl11_fcsa7c"  ,"cl11_fcsa7d"  ,"cl11_fcsa7e"  , "cl11_fcsa7f",           
+            "cl11_fcsa8a"  ,"cl11_fcsa8b","cl11_fcsa8c" ,"cl11_fcsa8d",           
+            "cl11_fcsa8e","cl11_fcsa8f")    
+
+           
+## JHU: Genetics020.330
+
+JHU<-c("cl2_me1_1",           "cl2_me1_2"  ,         "cl2_me1_3"  ,            
+       "cl2_me1_4"    ,             "cl2_me1_5"  ,         "cl2_me1_6"  ,           "cl2_me1_7"  ,            
+       "cl2_me1_8"    ,             "cl2_me1_9"  ,         "cl2_me1_10" ,           "cl2_me1_11" ,           
+       "cl2_me1_12"   ,             "cl2_me2_1"  ,         "cl2_me2_2"  ,           "cl2_me2_3"  ,            
+       "cl2_me2_4"    ,             "cl2_me2_5"  ,         "cl2_me2_6"  ,           "cl2_me2_7"  ,           
+       "cl2_me2_8"    ,             "cl2_me2_9"  ,         "cl2_me2_10" ,           "cl2_me2_11" ,          
+       "cl2_me3_1"    ,             "cl2_me3_2"  ,         "cl2_me3_3"  ,           "cl2_me3_4"  ,          
+       "cl2_me3_5"    ,             "cl2_me3_6"  ,         "cl2_me3_7"  ,           "cl2_me3_8"  ,  
+       "cl12_me1_1"   ,             "cl12_me1_2" ,         "cl12_me1_3" ,           "cl12_me1_4" ,          
+       "cl12_me1_5"   ,             "cl12_me1_6" ,          
+       "cl12_me1_7"   ,             "cl12_me1_8" ,         "cl12_me1_9"  ,          "cl12_me1_10" ,          
+       "cl12_me1_11"  ,             "cl12_me1_12",         "cl12_me2_1"  ,          "cl12_me2_2"  ,         
+       "cl12_me2_3"   ,             "cl12_me2_4" ,         "cl12_me2_5"  ,          "cl12_me2_6"  ,        
+       "cl12_me2_7"   ,             "cl12_me2_8" ,         "cl12_me2_9"  ,          "cl12_me2_10" ,         
+       "cl12_me2_11"  ,             "cl12_me3_1" ,         "cl12_me3_2"  ,          "cl12_me3_3"  ,         
+       "cl12_me3_4"   ,             "cl12_me3_5" ,         "cl12_me3_6"  ,          "cl12_me3_9" ,
+       "cl2_me3_3arev",	            "cl2_me3_3brev",	     "cl2_me3_7arev",	        "cl2_me3_7brev")      
+
+
+## METRO: BIO3600
+
+Metro<-c("cl3_fc10"  ,     "cl3_fc11"   ,            "cl3_fc12"    ,           "cl3_fc13" ,             
+         "cl3_fc14"          ,     "cl3_fc15"   ,            "cl3_fc16"    ,           "cl3_fc17" ,             
+         "cl3_fc18"         ,      "cl3_fc19"   ,            "cl3_fc20"    ,           "cl3_fc21" ,             
+         "cl3_fc22"         ,      "cl3_fc23"   ,            "cl3_fc24"   ,            "cl3_fc25" ,             
+         "cl3_fc26"         ,      "cl3_fc27"   ,            "cl3_fc28"    ,           "cl3_fc29" ,             
+         "cl3_fc30"         ,      "cl3_fc31"   ,            "cl3_fc32"   ,     
+         "cl8_fc3"          ,      "cl8_fc4"    ,           
+         "cl8_fc5"          ,      "cl8_fc10"   ,            "cl8_fc11"   ,            "cl8_fc14" ,             
+         "cl8_fc17"         ,      "cl8_fc20"   ,            "cl8_fc22"   ,
+         "cl13_fc2"         ,      "cl13_fc6"   ,            "cl13_fc7"   ,            "cl13_fc8" ,             
+         "cl13_fc11"        ,      "cl13_fc12"  ,            "cl13_fc13"  ,            "cl13_fc14",             
+         "cl13_sa1"         ,      "cl13_sa2"   ,            "cl13_sa3"   ,            "cl18_fc1" ,
+         "cl18_fc2"         ,      "cl18_fc3"   ,            "cl18_fc9"   ,            "cl18_fc16" ,            
+         "cl18_fc17") 
+
+
+## ST MARYS: BL2330
+
+STMU<-c("cl4_fcsa1"   ,          "cl4_fcsa2a"    ,         "cl4_fcsa2b"     ,        "cl4_fcsa3a"   ,          
+        "cl4_fcsa3b"  ,           "cl4_fcsa4"   ,           "cl4_fcsa5"     ,         "cl4_fcsa6a"  ,"cl4_fcsa6b",            
+        "cl4_fcsa7"   ,           "cl4_fcsa8a"   ,          "cl4_fcsa8b"    ,         "cl4_fcsa9"   ,          
+        "cl4_fcsa10a" ,           "cl4_fcsa10b" ,         "cl4_fcsa10c"     ,       "cl4_fcp1a"     ,        
+        "cl4_fcp1b"   ,           "cl4_fcp1c"   ,           "cl4_fcp1d"     ,         "cl4_fcp2"    ,          
+        "cl4_fcp3"    ,           "cl4_fcp4a"   ,           "cl4_fcp4b"     ,         "cl4_fcp5a"   ,          
+        "cl4_fcp5b"   ,           "cl4_fcp5c"   ,           "cl4_fcp5d"     ,         "cl4_fcp5e" ,  "cl9_fcsa2",             
+        "cl9_fcsa3"   ,           "cl9_fcsa4"   ,           "cl9_fcsa5"     ,         "cl9_fcsa7" ,            
+        "cl9_fcp1"    ,           "cl9_fcp3"    ,           "cl9_fcp4"      ,         "cl9_fcp5"  ,            
+        "cl9_fcp6"    ,           "cl9_fcp7"    ,          "cl14_fcmc1"     ,       
+        "cl14_fcmc2"  ,           "cl14_fcmc3"  ,           "cl14_fcmc4"    ,         "cl14_fcmc5" ,           
+        "cl14_fcmc6"  ,           "cl14_fcmc7"  ,           "cl14_fcmc8"    ,         "cl14_fcmc9" ,            
+        "cl14_fcmc10" ,           "cl14_fcmc11" ,           "cl14_fcmc12"   ,         "cl14_fcmc13" ,          
+        "cl14_fcmc14" ,           "cl14_fcmc15" ,           "cl14_fcmc16"   ,         "cl14_fcmc17" ,          
+        "cl14_fcmc18" ,           "cl14_fcmc19" ,           "cl14_fcmc20"   ,         "cl14_fcmc21" ,          
+        "cl14_fcmc22" ,           "cl14_fcmc23" ,           "cl14_fcmc24"   ,         "cl14_fcmc25" ,          
+        "cl14_fcp1"   ,           "cl14_fcp2a"  ,           "cl14_fcp2b"    ,         "cl14_fcp2c"  ,          
+        "cl14_fcp2d"  ,           "cl14_fcp2e"  ,           "cl14_fcp2f"    ,         "cl14_fcp3"   ,          
+        "cl14_fcp4a"  ,           "cl14_fcp4b"  ,           "cl14_fcp5"     ,         "cl14_fcp6a"  ,          
+        "cl14_fcp6b"  ,           "cl14_fcp6c"  ,           "cl14_fcp7a"    ,         "cl14_fcp7b" ,
+        "cl19_fcsa6a" ,           "cl19_fcsa6b" ,           "cl19_fcsa6c" ) 
+
+
+## UCD: BIOL3832
+
+UCD<-c("cl5_me1_3a",             "cl5_me1_3b" ,            "cl5_me1_3c" ,           
+       "cl5_me1_9a" ,            "cl5_me1_9b"  ,           "cl5_me3_4a" ,            "cl5_me3_4b", 
+       "cl5_me4_1",             "cl5_me4_2",        	     "cl5_me4_3",   	         "cl5_me4_4",
+       "cl5_me4_5",             "cl6_me4_1",	             "cl6_me4_2",      	       "cl6_me4_3",
+       "cl6_me4_4",               "cl6_me4_5")
+
+
+## UGA: GENE3200
+
+UGA<-c("cl10_me1_2"  ,           "cl10_me1_28",           
+       "cl10_me1_30"    ,        "cl10_me1_44"  ,          "cl10_me2_2"   ,          "cl10_me2_11"  ,         
+       "cl10_me2_17"    ,        "cl10_me2_20"  ,          "cl10_me2_25"  ,          "cl10_me2_28"  ,         
+       "cl10_me2_32"    ,        "cl10_me2_33"  ,          "cl10_me2_39"  ,          "cl10_me2_40"  ,         
+       "cl10_me3_tf2"   ,        "cl10_me3_mc12" ,         "cl10_me3_sa7" ,          "cl10_me4_tf1" ,         
+       "cl10_me4_mc17"  ,        "cl10_me4_sa1" ,          "cl10_me4_sa4" ,          "cl10_me4_sa6" ,         
+       "cl10_me5_tf20"  ,        "cl10_me5_mc29" ,         "cl10_me5_sa3" ,          "cl10_me6_20"  ,         
+       "cl10_me6_25"    ,        "cl10_me6_32"   ,         "cl10_me6_41"  ,          "cl10_me6_46"  ,         
+       "cl10_me6_49"  ) 
+       
+ --------------------------------------------------------------------------------------------------------------
+                                 ALL ITEMS BY INSTITUTION AND MATRIX/CLASS GROUPS
+--------------------------------------------------------------------------------------------------------------
+
+CU.JK.y1 <- c("cl7_fc26", "cl7_fc27", "cl7_fc28", "cl7_fc29", "cl7_fc30", "cl7_fc31", "cl7_fc32",
+              "cl7_fc33", "cl7_fc34", "cl7_fc35", "cl7_fc36", "cl7_fc37", "cl7_fc38", "cl7_fc39",              
+              "cl7_fc40", "cl7_fcsa1a", "cl7_fcsa1b", "cl7_fcsa1c", "cl7_fcsa1d", "cl7_fcsa2a",
+              "cl7_fcsa2b", "cl7_fcsa2c", "cl7_fcsa3a", "cl7_fcsa3b", "cl7_fcsa3c", "cl7_fcsa3d",            
+              "cl7_fcsa4a", "cl7_fcsa4b", "cl7_fcsa5a", "cl7_fcsa5b", "cl7_fcsa5c", "cl7_fcsa6a",
+              "cl7_fcsa6b", "cl7_fcsa6c", "cl7_fcsa6d", "cl7_fcsa6e")
+
+CU.JK.pre.m5 <- c("cl7_fc28", "cl7_fc33", "cl7_fc34", "cl7_fc39", "cl7_fcsa2b", "cl7_fcsa2c", "cl7_fcsa3a",
+                  "cl7_fcsa3b", "cl7_fcsa3c", "cl7_fcsa3d")
+
+CU.JK.pre.m6 <- c("cl7_fc30", "cl7_fc33", "cl7_fc34", "cl7_fc36", "cl7_fcsa5a", "cl7_fcsa5b", "cl7_fcsa5c", 
+                  "cl17_fcsa2a", 	"cl17_fcsa2b",	"cl17_fcsa2c",	"cl17_fcsa2d")
+
+CU.JK.post <- c("cl7_fc26", "cl7_fc28", "cl7_fc30", "cl7_fc33", "cl7_fc34", "cl7_fc38", "cl7_fc39", 
+                "cl7_fcsa2a", "cl7_fcsa2b","cl7_fcsa2c", "cl7_fcsa3a", "cl7_fcsa3b", "cl7_fcsa3c","cl7_fcsa3d",
+                "cl7_fcsa5a", "cl7_fcsa5b", "cl7_fcsa5c", "cl17_fcsa2a", 	"cl17_fcsa2b",	"cl17_fcsa2c",
+                "cl17_fcsa2d",	"cl11_fcmc26", "cl11_fcmc27", "cl17_fcmc3",	"cl17_fcmc4",	"cl17_fcsa1a",	
+                "cl17_fcsa1b",	"cl17_fcsa1c",	"cl17_fcsa1d", "cl17_fcsa1e",	"cl17_fcsa1f",	"cl17_fcsa3a",	
+                "cl17_fcsa3b",	"cl17_fcsa3c",	"cl17_fcsa5")
+
+
+# MCDB2150_KK
+
+CU.KK.y1 <- c("cl1_fc26" , "cl1_fc27","cl1_fc28",              
+              "cl1_fc29" ,"cl1_fc30", "cl1_fc31", "cl1_fc32" ,             
+              "cl1_fc33", "cl1_fc34" ,  "cl1_fc35"  , "cl1_fc36",         
+              "cl1_fc37" ,"cl1_fc38" , "cl1_fc39" ,  "cl1_fc40" ,             
+              "cl1_fc41" , "cl1_fc42"  , "cl1_fc43"  , "cl1_fc44"  ,            
+              "cl1_fc45")
+
+CU.KK.pre.m1 <- c("cl1_fc26",  "cl1_fc37", "cl1_fc39", "cl1_fc44")    
+
+CU.KK.pre.m2 <- c("cl1_fc28",  "cl1_fc29", "cl1_fc38", "cl1_fc42", "cl1_fc44")
+
+CU.KK.post <- c("cl1_fc26" , "cl1_fc28",  "cl1_fc29", "cl1_fc37" ,"cl1_fc38" , "cl1_fc39",  "cl1_fc42", 
+                "cl1_fc44", "cl7_fc38", "cl11_fcmc26" , "cl11_fcmc27", "cl11_fcmc28" ,
+                "cl11_fcmc29", "cl11_fcmc31" , "cl11_fcmc38", "cl11_fcsa3a" , "cl11_fcsa3b" ,          
+                "cl11_fcsa3c", "cl11_fcsa4_1"  , "cl11_fcsa4_2"  ,"cl11_fcsa4_3" ,         
+                "cl11_fcsa4_4", "cl11_fcsa5a"   , "cl11_fcsa5b" , "cl11_fcsa5c",           
+                "cl11_fcsa6a" , "cl11_fcsa6b"   ,  "cl11_fcsa7a"  , "cl11_fcsa7b",           
+                "cl11_fcsa7c"  ,"cl11_fcsa7d"  ,"cl11_fcsa7e"  , "cl11_fcsa7f",           
+                "cl11_fcsa8a"  ,"cl11_fcsa8b","cl11_fcsa8c" ,"cl11_fcsa8d",           
+                "cl11_fcsa8e","cl11_fcsa8f")
+
+
+## JHU: Genetics020.330
+
+JHU.y1 <-c("cl2_me1_1",           "cl2_me1_2"  ,         "cl2_me1_3"  ,            
+           "cl2_me1_4"    ,             "cl2_me1_5"  ,         "cl2_me1_6"  ,           "cl2_me1_7"  ,            
+           "cl2_me1_8"    ,             "cl2_me1_9"  ,         "cl2_me1_10" ,           "cl2_me1_11" ,           
+           "cl2_me1_12"   ,             "cl2_me2_1"  ,         "cl2_me2_2"  ,           "cl2_me2_3"  ,            
+           "cl2_me2_4"    ,             "cl2_me2_5"  ,         "cl2_me2_6"  ,           "cl2_me2_7"  ,           
+           "cl2_me2_8"    ,             "cl2_me2_9"  ,         "cl2_me2_10" ,           "cl2_me2_11" ,          
+           "cl2_me3_1"    ,             "cl2_me3_2"  ,         "cl2_me3_3"  ,           "cl2_me3_4"  ,          
+           "cl2_me3_5"    ,             "cl2_me3_6"  ,         "cl2_me3_7"  ,           "cl2_me3_8")
+
+JHU.pre <-c("cl2_me3_3arev",	"cl2_me3_3brev",	"cl2_me3_7arev",	"cl2_me3_7brev")
+
+JHU.post <-c("cl2_me3_3arev",	"cl2_me3_3brev",	"cl2_me3_7arev",	"cl2_me3_7brev", 
+             "cl12_me1_1"   ,             "cl12_me1_2" ,         "cl12_me1_3" ,           "cl12_me1_4" ,          
+             "cl12_me1_5"   ,             "cl12_me1_6" ,          
+             "cl12_me1_7"   ,             "cl12_me1_8" ,         "cl12_me1_9"  ,          "cl12_me1_10" ,          
+             "cl12_me1_11"  ,             "cl12_me1_12",         "cl12_me2_1"  ,          "cl12_me2_2"  ,         
+             "cl12_me2_3"   ,             "cl12_me2_4" ,         "cl12_me2_5"  ,          "cl12_me2_6"  ,        
+             "cl12_me2_7"   ,             "cl12_me2_8" ,         "cl12_me2_9"  ,          "cl12_me2_10" ,         
+             "cl12_me2_11"  ,             "cl12_me3_1" ,         "cl12_me3_2"  ,          "cl12_me3_3"  ,         
+             "cl12_me3_4"   ,             "cl12_me3_5" ,         "cl12_me3_6"  ,          "cl12_me3_9")
+
+
+## METRO: BIO3600
+
+Metro.y1.cl3 <- c("cl3_fc10"  ,     "cl3_fc11"   ,            "cl3_fc12"    ,           "cl3_fc13" ,             
+                  "cl3_fc14"          ,     "cl3_fc15"   ,            "cl3_fc16"    ,           "cl3_fc17" ,             
+                  "cl3_fc18"         ,      "cl3_fc19"   ,            "cl3_fc20"    ,           "cl3_fc21" ,             
+                  "cl3_fc22"         ,      "cl3_fc23"   ,            "cl3_fc24"   ,            "cl3_fc25" ,             
+                  "cl3_fc26"         ,      "cl3_fc27"   ,            "cl3_fc28"    ,           "cl3_fc29" ,             
+                  "cl3_fc30"         ,      "cl3_fc31"   ,            "cl3_fc32")
+
+Metro.y1.cl8 <- c("cl3_fc10"  ,             "cl3_fc11"   ,           "cl3_fc14"          ,     "cl3_fc15"   ,            
+                  "cl3_fc19"   ,            "cl3_fc20"    ,          "cl3_fc23"   ,            "cl3_fc24"   ,       
+                  "cl3_fc29" ,             "cl3_fc30"     ,            "cl3_fc32",                 "cl8_fc3", 
+                  "cl8_fc4"    ,           
+                  "cl8_fc5"          ,      "cl8_fc10"   ,            "cl8_fc11"   ,            "cl8_fc14" ,             
+                  "cl8_fc17"         ,      "cl8_fc20"   ,            "cl8_fc22")
+
+Metro.pre.cl13 <- c("cl3_fc13" ,         "cl3_fc14"          ,     "cl3_fc15"   ,            "cl3_fc16"    ,
+                    "cl3_fc19"   ,            "cl3_fc20"    ,         "cl3_fc23"   ,         "cl3_fc24")
+
+Metro.pre.cl18 <- c("cl3_fc14"          ,     "cl3_fc15"   ,   "cl3_fc19"   ,            "cl3_fc20"    ,
+                    "cl8_fc3",              "cl8_fc10"   ,     "cl8_fc11")
+
+Metro.post.cl13 <- c("cl3_fc13" ,         "cl3_fc14"          ,     "cl3_fc15"   ,            "cl3_fc16"    ,
+                     "cl3_fc19"   ,            "cl3_fc20"    ,         "cl3_fc23"   ,         "cl3_fc24"    ,
+                     "cl13_fc2"         ,      "cl13_fc6"   ,            "cl13_fc7"   ,       "cl13_fc8" ,             
+                     "cl13_fc11"        ,      "cl13_fc12"  ,            "cl13_fc13"  ,       "cl13_fc14",             
+                     "cl13_sa1"         ,      "cl13_sa2"   ,            "cl13_sa3")
+
+Metro.post.cl18 <- c("cl3_fc14"          ,     "cl3_fc15"   ,           "cl3_fc19"   ,            "cl3_fc20"    ,
+                     "cl3_fc23"   ,         "cl3_fc24"    ,             "cl8_fc3",                 "cl8_fc5"    ,
+                     "cl8_fc10"   ,            "cl8_fc11"   ,           "cl13_fc2",                "cl13_sa1"   ,      
+                     "cl13_sa2"   ,            "cl13_sa3"   ,           "cl18_fc1" ,
+                     "cl18_fc2"         ,      "cl18_fc3"   ,            "cl18_fc9"   ,            "cl18_fc16" ,            
+                     "cl18_fc17")
+
+
+## ST MARYS: BL2330
+
+STMU.y1.cl4 <- c("cl4_fcsa1"   ,          "cl4_fcsa2a"    ,         "cl4_fcsa2b"     ,        "cl4_fcsa3a"   ,          
+                 "cl4_fcsa3b"  ,           "cl4_fcsa4"   ,           "cl4_fcsa5"     ,         "cl4_fcsa6a"  ,"cl4_fcsa6b",            
+                 "cl4_fcsa7"   ,           "cl4_fcsa8a"   ,          "cl4_fcsa8b"    ,         "cl4_fcsa9"   ,          
+                 "cl4_fcsa10a" ,           "cl4_fcsa10b" ,         "cl4_fcsa10c"     ,       "cl4_fcp1a"     ,        
+                 "cl4_fcp1b"   ,           "cl4_fcp1c"   ,           "cl4_fcp1d"     ,         "cl4_fcp2"    ,          
+                 "cl4_fcp3"    ,           "cl4_fcp4a"   ,           "cl4_fcp4b"     ,         "cl4_fcp5a"   ,          
+                 "cl4_fcp5b"   ,           "cl4_fcp5c"   ,           "cl4_fcp5d"     ,         "cl4_fcp5e")
+
+STMU.y1.cl9 <- c("cl4_fcsa1"   ,           "cl4_fcsa9"   ,           "cl9_fcsa2",             
+                 "cl9_fcsa3"   ,           "cl9_fcsa4"   ,           "cl9_fcsa5"     ,         "cl9_fcsa7" ,            
+                 "cl9_fcp1"    ,           "cl9_fcp3"    ,           "cl9_fcp4"      ,         "cl9_fcp5"  ,            
+                 "cl9_fcp6"    ,           "cl9_fcp7")
+
+STMU.pre.cl14 <- c("cl4_fcsa1"   ,          "cl4_fcsa3a"   ,          
+                  "cl4_fcsa3b"  ,           "cl4_fcsa4"   ,           "cl4_fcsa5",                  "cl4_fcsa9" , 
+                  "cl4_fcp2")               
+
+STMU.pre.cl19 <- c("cl4_fcsa1",              "cl4_fcsa9",             "cl4_fcp2",                  "cl9_fcsa2",             
+                   "cl9_fcsa3"   ,           "cl9_fcsa5")
+
+STMU.post.cl14 <- c("cl4_fcsa1"   ,       "cl4_fcsa3a"   ,          
+                    "cl4_fcsa3b"  ,           "cl4_fcsa4"   ,           "cl4_fcsa5"     ,       "cl4_fcsa9" ,
+                    "cl4_fcp2"    ,         "cl14_fcmc1"     ,       
+                    "cl14_fcmc2"  ,           "cl14_fcmc3"  ,           "cl14_fcmc4"    ,         "cl14_fcmc5" ,           
+                    "cl14_fcmc6"  ,           "cl14_fcmc7"  ,           "cl14_fcmc8"    ,         "cl14_fcmc9" ,            
+                    "cl14_fcmc10" ,           "cl14_fcmc11" ,           "cl14_fcmc12"   ,         "cl14_fcmc13" ,          
+                    "cl14_fcmc14" ,           "cl14_fcmc15" ,           "cl14_fcmc16"   ,         "cl14_fcmc17" ,          
+                    "cl14_fcmc18" ,           "cl14_fcmc19" ,           "cl14_fcmc20"   ,         "cl14_fcmc21" ,          
+                    "cl14_fcmc22" ,           "cl14_fcmc23" ,           "cl14_fcmc24"   ,         "cl14_fcmc25" ,          
+                    "cl14_fcp1"   ,           "cl14_fcp2a"  ,           "cl14_fcp2b"    ,         "cl14_fcp2c"  ,          
+                    "cl14_fcp2d"  ,           "cl14_fcp2e"  ,           "cl14_fcp2f"    ,         "cl14_fcp3"   ,          
+                    "cl14_fcp4a"  ,           "cl14_fcp4b"  ,           "cl14_fcp5"     ,         "cl14_fcp6a"  ,          
+                    "cl14_fcp6b"  ,           "cl14_fcp6c"  ,           "cl14_fcp7a"    ,         "cl14_fcp7b")
+
+STMU.post.cl19 <- c("cl4_fcsa1"   ,          "cl4_fcsa9" ,              "cl4_fcp2"      ,         "cl9_fcsa2",             
+                    "cl9_fcsa3"   ,          "cl9_fcsa5"     ,           "cl14_fcmc1"     ,       
+                    "cl14_fcmc2"  ,           "cl14_fcmc3"  ,           "cl14_fcmc4"    ,         "cl14_fcmc5" ,           
+                    "cl14_fcmc6"  ,           "cl14_fcmc7"  ,           "cl14_fcmc8"    ,         "cl14_fcmc9" ,            
+                    "cl14_fcmc10" ,           "cl14_fcmc11" ,           "cl14_fcmc12"   ,         "cl14_fcmc13" ,          
+                    "cl14_fcmc14" ,           "cl14_fcmc15" ,           "cl14_fcmc16"   ,         "cl14_fcmc17" ,          
+                    "cl14_fcmc18" ,           "cl14_fcmc19" ,           "cl14_fcmc20"   ,         "cl14_fcmc21" ,          
+                    "cl14_fcmc22" ,           "cl14_fcmc23" ,           "cl14_fcmc24"   ,         "cl14_fcmc25" ,          
+                    "cl14_fcp1"   ,           "cl14_fcp2a"  ,           "cl14_fcp2b"    ,         "cl14_fcp2c"  ,          
+                    "cl14_fcp2d"  ,           "cl14_fcp2e"  ,           "cl14_fcp2f"    ,         "cl14_fcp3"   ,          
+                    "cl14_fcp4a"  ,           "cl14_fcp4b"  ,           "cl14_fcp5"     ,         
+                    "cl19_fcsa6a" ,           "cl19_fcsa6b" ,           "cl19_fcsa6c")
+
+
+## UCD: BIOL3832
+
+UCD.y1.cl5 <- c("cl5_me4_1",             "cl5_me4_2",        	     "cl5_me4_3",   	         "cl5_me4_4",
+                "cl5_me4_5")
+
+UCD.y1.cl6 <- c("cl6_me4_1",	             "cl6_me4_2",      	       "cl6_me4_3",
+                "cl6_me4_4",               "cl6_me4_5")
+
+UCD.pre.m3 <- c("cl5_me4_2",                  "cl5_me1_3a",             "cl5_me1_3b" ,            "cl5_me1_3c")
+
+UCD.pre.m4 <- c("cl5_me4_5", "cl5_me1_9a", "cl5_me1_9b", "cl5_me3_4a", "cl5_me3_4b")
+
+UCD.post <- c("cl5_me4_2",              "cl5_me4_5",                 "cl5_me1_3a",             "cl5_me1_3b" ,            
+              "cl5_me1_3c" ,            "cl5_me1_9a" ,            "cl5_me1_9b"  ,           "cl5_me3_4a" ,            
+              "cl5_me3_4b")
+
+
+## UGA: GENE3200
+
+UGA.y1 <- c("cl10_me1_44"  ,     "cl10_me2_39"  ,          "cl10_me2_40"  ,         
+            "cl10_me3_tf2"   ,        "cl10_me3_mc12" ,         "cl10_me3_sa7" ,          "cl10_me4_tf1" ,         
+            "cl10_me4_mc17"  ,        "cl10_me4_sa1" ,          "cl10_me4_sa4" ,          "cl10_me4_sa6" ,         
+            "cl10_me5_tf20"  ,        "cl10_me5_mc29" ,         "cl10_me5_sa3" ,          "cl10_me6_20"  ,         
+            "cl10_me6_25"    ,        "cl10_me6_32"   ,         "cl10_me6_41"  ,          "cl10_me6_46"  ,         
+            "cl10_me6_49") 
+
+UGA.pre.m7 <- c("cl10_me1_2"  ,      "cl10_me1_44"  ,           "cl10_me2_40"  ,             "cl10_me4_mc17"  ,
+                "cl10_me6_41")
+  
+UGA.pre.m8 <- c("cl10_me3_sa7",      "cl10_me4_sa6",            "cl10_me5_tf20",              "cl10_me5_mc29", 
+                "cl10_me6_32")
+
+UGA.post <- c("cl10_me1_2"  ,      "cl10_me1_44"  ,           "cl10_me2_40"  ,             "cl10_me4_mc17"  ,
+                  "cl10_me6_41") 
+
+
