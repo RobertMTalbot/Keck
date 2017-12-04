@@ -1,0 +1,173 @@
+---
+title: "Factor Analysis of GCA"
+author: "Derek Briggs"
+date: "May 22, 2017"
+output:
+  pdf_document: default
+  html_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Data
+
+I'm going to break this data into two sets, one for EFA, one for CFA
+
+```{r}
+library(psych)
+d<-read.csv("GCApost.csv")
+colnames(d) <- c("GCA1", "GCA2", "GCA3", "GCA4", "GCA5", "GCA6", "GCA7", "GCA8", "GCA9", "GCA10", "GCA11", "GCA12", "GCA13", "GCA14", "GCA15", "GCA16", "GCA17", "GCA18", "GCA19", "GCA20", "GCA21", "GCA22", "GCA23", "GCA24", "GCA25")
+x<-seq(from=1, to=nrow(d), by=2)
+y<-seq(from=2, to=nrow(d), by=2)
+d1<-d[x,]
+d2<-d[y,]
+df<-as.data.frame(d)
+```
+
+##Item Descriptives and Reliability
+
+Let's have a look at item descriptives and alpha
+
+```{r}
+alpha(df,na.rm=T)
+```
+One thing to notice here is that item 19 stands out as having by far the lowest correlations with total score based on all other GCA items.
+
+##Dimensionality Analyses
+
+```{r}
+cm<-cor(d1,use="complete.obs")
+ev <- eigen(cm)
+library(corrplot)
+cor.plot(cm)
+```
+
+Let's run a Parallel Analysis Scree Plot
+```{r}
+fa.parallel(cm, n.obs = nrow(d1), fm="minres", fa="both", 
+            main = "Parallel Analysis Scree Plots",
+            n.iter=100, error.bars=FALSE, SMC=FALSE,
+            ylabel=NULL, show.legend=TRUE)
+```
+So based on principal components could make a case for about 2; based on factors could make a case for up to 4 or 5. I'm going to run EFA with 2, 3 and 4 factors. 
+
+Starting with 2 Factors
+
+```{r}
+mod1<-fa(d1,nfactors=2,rotate="Promax",fm="pa",cor="tet")
+print(mod1$loadings,cut=.3)
+mod1$rms
+```
+Not bad. We have a cross-loading for items 18 and 19. The root mean residual (avg difference between observed item correlation and that predicted by model) is on the high side at 'r mod1$rms'. This solution explains about 29% of item covariance. Notice also that three items don't have loadings > .3 on either factor (items 2, 3 and 17). Let's try 3 factors.
+
+```{r}
+mod2<-fa(d1,nfactors=3,rotate="Promax",fm="pa",cor="tet")
+print(mod2$loadings,cut=.3)
+mod2$rms
+```
+The 3 factor solution explains just a little more covariance (an extra 4%), reduces root mean residual from 'r mod1$rms' to 'r mod2$rms'. Also notice that items 2, 15 and 16 don't have loadings > .3. With three factors we get a lot more cross-loadings that show up--tricky to interpret. Item 19 continues to be a problem. Lastly, let's try 4 factors.
+```{r}
+mod3<-fa(d1,nfactors=4,rotate="Promax",fm="pa",cor="tet")
+print(mod3$loadings,cut=.3)
+mod3$rms
+```
+Cumulative variance explained tops out here at 35% (an extra 3% from 3 factor model). 1, 6, 7 20 and 23 all have cross-loadings, and the ones for 20 and 23 are a little hard to interpret. Items with no significant loadings are 9 and 15. The root mean residual drops from 'r mod2$rms' to 'r mod3$rms'. We often use .05 as a threshold for strong fit, so this is the only model that gets us right to this threshold.
+
+Just for the fun of it, let's try a 7 factor model.
+
+```{r}
+mod4<-fa(d1,nfactors=7,rotate="Promax",fm="pa",cor="tet")
+print(mod4$loadings,cut=.3)
+mod4$rms
+```
+So in the 7 factor model, we get a strange estimate for item8, that's what the "Heywood" case references. We still have some cross-loadings, kind of impressive when we are allowing so many factors: 5, 6 and 24. I notice that the 7th factor is only defined by item 19. So it probably makes sense to just focus on a 6 factor solutuon and drop out item 19.
+
+The best news about this model is that it has best fit with respect to root mean residual, which has dropped from 'r mod3$rms' to 'r mod4$rms'. This model also explained the greatest proportion of item covariance (not surprisingly). 
+
+Here's a visualization of the loadings for the most parsimonous solution we tried, with just two factors.
+
+```{r}
+cor.plot(mod1)
+```
+I'm going to first try specifying a CFA model based on results from the two factor EFA.  I'm gonna drop item 19 and not only keep strongest factor loading for each item.
+
+## CFA
+
+```{r }
+library("lavaan")
+fac3_mod <- 
+'factor1 =~ GCA1 + GCA4 + GCA5 + GCA6 + GCA7 + GCA8 + GCA9
++ GCA13 + GCA14 + GCA15 + GCA18 + GCA21 + GCA22 + GCA24 + GCA25
+factor2 =~GCA10 + GCA11 + GCA12 + GCA16
++ GCA20 + GCA23'
+fac3mod <- cfa(model = fac3_mod, data = d2, ordered = names(d2) ,estimator = "DWLS", se = "robust", test = "scaled.shifted", std.lv = TRUE)
+parameterEstimates(fac3mod)[1:20,]
+resid(fac3mod)[2]
+round((fitmeasures(fac3mod)[c("chisq","df","pvalue","chisq.scaled","df.scaled","pvalue.scaled","cfi","gfi","tli","rmsea","rmsea.pvalue","srmr")]),3)
+mi <- modindices(fac3mod)
+mi[mi$op == "=~",]
+```
+There is a lot of conflicting information in the fit statistics for this model. The results from a Chi-Square test of model fit differ depending upon whether we make an adjustment to the Chi-Square statistic ("scaled") because we are using binary data but assuming they can be treated as if they are realizations of underlying continuous variables. We use polychoric correlations as the model inputs here, and these assume multivariate normality. The "scaled" version of the Chi-Square statistic are conservative versions for when this assumption of normality is violated. Long story short: under the unadjusted Chi-Square test, we can't reject the hypothesis that the difference between observed and predicted item correlations is due to chance, but under the adjusted (scaled) version, we can. 
+
+The three indices of relative fit: CFI, GFI and RMSEA are all above (.95 for CFI and GFI) and below (.05 for RMSEA) the conventional rules of thumb: .95, .95 and .05. So that's good. But the root mean square of residuals from the correlation matrix is pretty large at .07. I printed out the residual correlation matrix above, so you can see examples of specific residual item correlations that remain pretty big (anything that is, say .1 or higher in abolute value). So honestly, I'm not sure what to conclude about the fit of this model.
+
+Let's try the 6 factor version (based on 7 factor EFA, but ). I'm going to keep the cross-loadings on four items: 5, 6, 20 and 24.
+
+```{r }
+fac6_mod <- 
+'factor1 =~ GCA2 + GCA6 + GCA10 + GCA12 + GCA16 + GCA18 + GCA20 + GCA23
+factor2 =~ GCA4 + GCA5 + GCA9 
+factor3 =~ GCA7 + GCA8 
+factor4 =~ GCA1 + GCA3 + GCA5 + GCA11 + GCA17 + GCA24
+factor5 =~ GCA14 + GCA20 
+factor6 =~ GCA6 + GCA13 + GCA21 + GCA24 + GCA25
+'
+fac6mod <- cfa(model = fac6_mod, data = d2, ordered = names(d2) ,estimator = "DWLS", se = "robust", test = "scaled.shifted", std.lv = TRUE)
+parameterEstimates(fac6mod)[1:26,1:6]
+resid(fac6mod)[2]
+round((fitmeasures(fac6mod)[c("chisq","df","pvalue","chisq.scaled","df.scaled","pvalue.scaled","cfi","gfi","tli","rmsea","rmsea.pvalue","srmr")]),3)
+```
+
+OK, so this model has some problems. Notice the error messages, and look at the loading estimate for item 14! I'll try another version of this model with no cross-loadings and dropping one more factor. Notice that this model excludes items 14, 15, 19 and 22.
+
+```{r }
+fac5_mod <- 
+'factor1 =~ GCA2 + GCA6 + GCA10 + GCA12 + GCA16 + GCA18 + GCA20 + GCA23
+factor2 =~ GCA4 + GCA5 + GCA9 
+factor3 =~ GCA7 + GCA8 
+factor4 =~ GCA1 + GCA3 + GCA11 + GCA17 + GCA24
+factor5 =~ GCA13 + GCA21 + GCA25
+'
+fac5mod <- cfa(model = fac5_mod, data = d2, ordered = names(d2) ,estimator = "DWLS", se = "robust", test = "scaled.shifted", std.lv = TRUE)
+parameterEstimates(fac5mod)[1:21,1:6]
+resid(fac5mod)[2]
+round((fitmeasures(fac5mod)[c("chisq","df","pvalue","chisq.scaled","df.scaled","pvalue.scaled","cfi","gfi","tli","rmsea","rmsea.pvalue","srmr")]),3)
+inspect(fac5mod,"cov.lv")
+```
+So this model can at least be estimated, but the improvement in fit is marginal relative to the 2 factor model we specified earlier. In particular, notice that the root mean residual is still about .07. 
+
+3: (2, 7, 20, 22, 23)
+4:  (13, 24)
+5: . (5, 9, 19) - possibly drop out q19
+6:  (4, 11, 12)
+7: (15, 21)
+8 (drop out since 1 question):  (25)
+
+
+```{r }
+gca_mod <- 
+'factor1 =~ GCA3 + GCA6 + GCA10 + GCA14 + GCA16 + GCA18 
+factor2 =~ GCA1 + GCA8 + GCA17 
+factor3 =~ GCA2 + GCA7 + GCA20 + GCA22 + GCA23  
+factor4 =~ GCA13 + GCA24 
+factor5 =~ GCA5 + GCA9 
+factor6 =~ GCA15 + GCA21
+'
+gcamod <- cfa(model = gca_mod, data = d2, ordered = names(d2) ,estimator = "DWLS", se = "robust", test = "scaled.shifted", std.lv = TRUE)
+parameterEstimates(fac5mod)[1:20,1:6]
+resid(gcamod)[2]
+round((fitmeasures(gcamod)[c("chisq","df","pvalue","chisq.scaled","df.scaled","pvalue.scaled","cfi","gfi","tli","rmsea","rmsea.pvalue","srmr")]),3)
+inspect(gcamod,"cov.lv")
+```
