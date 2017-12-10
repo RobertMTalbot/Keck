@@ -301,7 +301,7 @@ d6<-full.data[full.data$post==1 & full.data$Institution=="UCD_AJ" | full.data$In
 
 d6$cl5_me1_3a <- recoder(d6$cl5_me1_3a, '4:1')
 d6$cl5_me1_3b <- recoder(d6$cl5_me1_3b, '4:1')
-d6$cl5_me1_3c <- recoder(d6$cl5_me1_3c, '1:0')
+d6$cl5_me1_3c <- recoder(d6$cl5_me1_3c, '1:0;2:1')
 d6$cl5_me1_9a <- recoder(d6$cl5_me1_9a, '2:0; 3:0; 4.5:0; 5:0; 6:1; 6.5:1; 8:2')
 d6$cl5_me1_9b <- recoder(d6$cl5_me1_9b, '2:1')
 d6$cl5_me3_4a <- recoder(d6$cl5_me3_4a, '5:1')
@@ -396,7 +396,7 @@ setwd("~/Dropbox/Github/Keck/Scripts")
 source("max_poss_on_tests.R")
 
 max.score[it.data$Institution=="CUB_KK" & it.data$Semester=="Fa2015"]<-19
-max.score[it.data$Institution=="CUB_KK" & it.data$Semester=="Fa2016"]<-38
+max.score[it.data$Institution=="CUB_KK" & it.data$Semester=="Fa2016"]<-39
 max.score[it.data$Institution=="CUB_JK" & it.data$Semester=="Sp2016"]<-46
 max.score[it.data$Institution=="CUB_JK" & it.data$Semester=="Sp2017"]<-43
 max.score[it.data$Institution=="Metro_VM" & it.data$Semester=="Fa2015"]<-22
