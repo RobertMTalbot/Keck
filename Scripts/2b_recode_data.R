@@ -11,6 +11,7 @@ load("fulldata.RData")
 
 library(recoder)
 library(CTT)
+library(dplyr)
 
 ##----------Scoring GCA items with function "score" from CTT package
 # Basis for this answer key comes from the tab "GCA Details"
@@ -294,9 +295,9 @@ UCD<-c("cl5_me1_3a","cl5_me1_3b" ,"cl5_me1_3c" , "cl5_me1_9a", "cl5_me1_9b",
        "cl5_me3_4a", "cl5_me3_4b","cl5_me4_2","cl5_me4_3", "cl5_me4_4", "cl5_me4_5")
        
 # Exclude  "cl5_me4_1", "cl6_me4_1","cl6_me4_2", "cl6_me4_2","cl6_me4_4", "cl6_me4_5"
+# This has the effect of excluding all students that where in UCD_AJ2 in Fall 2015
 
-d6<-full.data[full.data$post==1 & full.data$Institution=="UCD_AJ" | full.data$Institution=="UCD_AJ1" 
-   | full.data$Institution=="UCD_AJ2",
+d6<-full.data[full.data$post==1 & (full.data$Institution=="UCD_AJ" | full.data$Institution=="UCD_AJ1"),
    c("StudentID","Semester","Institution","Course Code","cl","year",GCA, UCD)]
 
 d6$cl5_me1_3a <- recoder(d6$cl5_me1_3a, '4:1')
@@ -371,29 +372,23 @@ it.data<-full_join(d12456,d7)
 
 rm(d12,d124,d1245,d12456)
 
-##Drop Students with no Responses to Local Items (even if they took GCA)
+### TOTAL SCORES in PERCENT OF TOTAL METRIC
+
+#Drop Students with no Responses to Local Items (even if they took GCA)
 
 local_tot_score<-apply(it.data[,32:ncol(it.data)],1,function(x) sum(x, na.rm=T))
 
-#table(local_tot_score)
+table(local_tot_score)
 
-it.data<-it.data[local_tot_score>0,]
-
-### TOTAL SCORES in PERCENT OF TOTAL METRIC
-
-#This is tricky. Easy enough to find the sum of item scores for each student
-#but max score on items administered in a particular class
-
-tot.score<-apply(it.data[,32:ncol(it.data)],1, function(x) sum(x, na.rm=T))
-#table(tot.score)
+#it.data<-it.data[local_tot_score>0,]
 
 max.score<-rep(0,nrow(it.data))
 
 #Invoke separate script to find local exam max possible after recoding
 
-setwd("~/Dropbox/Github/Keck/Scripts")
+#setwd("~/Dropbox/Github/Keck/Scripts")
 
-source("max_poss_on_tests.R")
+#source("max_poss_on_tests.R")
 
 max.score[it.data$Institution=="CUB_KK" & it.data$Semester=="Fa2015"]<-19
 max.score[it.data$Institution=="CUB_KK" & it.data$Semester=="Fa2016"]<-39
@@ -407,21 +402,23 @@ max.score[it.data$Institution=="StMU_CG" & it.data$Semester=="Fa2015"]<-40
 max.score[it.data$Institution=="StMU_CG" & it.data$Semester=="Sp2016"]<-21
 max.score[it.data$Institution=="StMU_CG" & it.data$Semester=="Fa2016"]<-62
 max.score[it.data$Institution=="StMU_CG" & it.data$Semester=="Sp2017"]<-61
-max.score[it.data$Institution=="UCD_AJ" & it.data$Semester=="Fa2016"]<-8
-max.score[it.data$Institution=="UCD_AJ1" | it.data$Institution=="UCD_AJ2" & it.data$Semester=="Fa2015"]<-12
-max.score[it.data$Institution=="Uga_NA" & it.data$Semester=="Sp2016"]<-24
+max.score[it.data$Institution=="UCD_AJ" & it.data$Semester=="Fa2016"]<-12
+max.score[it.data$Institution=="UCD_AJ1" & it.data$Semester=="Fa2015"]<-12
+max.score[it.data$Institution=="Uga_NA" & it.data$Semester=="Sp2016"]<-35
 max.score[it.data$Institution=="Uga_NA" & it.data$Semester=="Sp2017"]<-7
 
 table(max.score)
 
-per.total<-(tot.score/max.score)*100
+per.total<-(local_tot_score/max.score)*100
 
 #Check to make sure no values are over 100! 
 summary(per.total)
 #Where are we seeing values over 100?
 it.data[per.total>100,1:3]
 
-raw.scores<-data.frame(it.data[,1:6],tot.score,max.score,per.total)
+raw.scores<-data.frame(it.data,local_tot_score,max.score,per.total)
+
+raw.scores<-arrange(raw.scores,per.total)
 
 setwd("~/Dropbox/Github/Keck/Analysis Data")
 
