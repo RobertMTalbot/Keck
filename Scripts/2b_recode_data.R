@@ -386,26 +386,29 @@ max.score<-rep(0,nrow(it.data))
 
 #Invoke separate script to find local exam max possible after recoding
 
-#setwd("~/Dropbox/Github/Keck/Scripts")
+setwd("~/Dropbox/Github/Keck/Scripts")
 
-#source("max_poss_on_tests.R")
+source("max_poss_on_tests.R")
 
-max.score[it.data$Institution=="CUB_KK" & it.data$Semester=="Fa2015"]<-19
-max.score[it.data$Institution=="CUB_KK" & it.data$Semester=="Fa2016"]<-39
-max.score[it.data$Institution=="CUB_JK" & it.data$Semester=="Sp2016"]<-46
-max.score[it.data$Institution=="CUB_JK" & it.data$Semester=="Sp2017"]<-43
-max.score[it.data$Institution=="Metro_VM" & it.data$Semester=="Fa2015"]<-22
-max.score[it.data$Institution=="Metro_VM" & it.data$Semester=="Sp2016"]<-18
-max.score[it.data$Institution=="Metro_VM" & it.data$Semester=="Fa2016"]<-18
-max.score[it.data$Institution=="Metro_VM" & it.data$Semester=="Sp2017"]<-20
-max.score[it.data$Institution=="StMU_CG" & it.data$Semester=="Fa2015"]<-40
-max.score[it.data$Institution=="StMU_CG" & it.data$Semester=="Sp2016"]<-21
-max.score[it.data$Institution=="StMU_CG" & it.data$Semester=="Fa2016"]<-62
-max.score[it.data$Institution=="StMU_CG" & it.data$Semester=="Sp2017"]<-61
-max.score[it.data$Institution=="UCD_AJ" & it.data$Semester=="Fa2016"]<-12
-max.score[it.data$Institution=="UCD_AJ1" & it.data$Semester=="Fa2015"]<-12
-max.score[it.data$Institution=="Uga_NA" & it.data$Semester=="Sp2016"]<-35
-max.score[it.data$Institution=="Uga_NA" & it.data$Semester=="Sp2017"]<-7
+# referring Maxdf to put max scores
+Maxdf
+
+max.score[it.data$Institution=="CUB_KK" & it.data$Semester=="Fa2015"]<-Maxdf[1,2]
+max.score[it.data$Institution=="CUB_KK" & it.data$Semester=="Fa2016"]<-Maxdf[1,4]
+max.score[it.data$Institution=="CUB_JK" & it.data$Semester=="Sp2016"]<-Maxdf[2,3]
+max.score[it.data$Institution=="CUB_JK" & it.data$Semester=="Sp2017"]<-Maxdf[2,5]
+max.score[it.data$Institution=="Metro_VM" & it.data$Semester=="Fa2015"]<-Maxdf[3,2]
+max.score[it.data$Institution=="Metro_VM" & it.data$Semester=="Sp2016"]<-Maxdf[3,3]
+max.score[it.data$Institution=="Metro_VM" & it.data$Semester=="Fa2016"]<-Maxdf[3,4]
+max.score[it.data$Institution=="Metro_VM" & it.data$Semester=="Sp2017"]<-Maxdf[3,5]
+max.score[it.data$Institution=="StMU_CG" & it.data$Semester=="Fa2015"]<-Maxdf[4,2]
+max.score[it.data$Institution=="StMU_CG" & it.data$Semester=="Sp2016"]<-Maxdf[4,3]
+max.score[it.data$Institution=="StMU_CG" & it.data$Semester=="Fa2016"]<-Maxdf[4,4]
+max.score[it.data$Institution=="StMU_CG" & it.data$Semester=="Sp2017"]<-Maxdf[4,5]
+max.score[it.data$Institution=="UCD_AJ" & it.data$Semester=="Fa2016"]<-Maxdf[5,4]
+max.score[it.data$Institution=="UCD_AJ1" & it.data$Semester=="Fa2015"]<-Maxdf[5,2]
+max.score[it.data$Institution=="Uga_NA" & it.data$Semester=="Sp2016"]<-Maxdf[6,3]
+max.score[it.data$Institution=="Uga_NA" & it.data$Semester=="Sp2017"]<-Maxdf[7,5]
 
 table(max.score)
 
