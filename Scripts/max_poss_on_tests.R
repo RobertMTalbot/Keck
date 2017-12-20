@@ -9,9 +9,7 @@
 # possible points on each test for each institution by time period
 # given Derek's recoding and exclusions in "2b_recode_data.R"
 
-#setwd("/Users/richardnoone/Dropbox/2017 CU Fall/Github/Keck/Keck Analysis")
-
-setwd("~/Dropbox/Github/Keck/Analysis Data")
+setwd("/Users/richardnoone/Dropbox/2017 CU Fall/Github/Keck/Keck Analysis")
 
 # Keck_local_item is the result of Derek's recoding and exclusions
 g<-read.csv("Keck_local_item_data.csv")
@@ -27,7 +25,7 @@ CU.KK <- c("cl1_fc26" , "cl1_fc27","cl1_fc28",
            "cl7_fc38","cl11_fcmc26" , "cl11_fcmc27", "cl11_fcmc28" ,
            "cl11_fcmc29", "cl11_fcmc31" , "cl11_fcmc38","cl1_fc42","cl1_fc43",
            "cl11_fcsa3a","cl11_fcsa3b","cl11_fcsa4_1", "cl11_fcsa4_2","cl11_fcsa4_3",
-           "cl11_fcsa4_4", "cl11_fcsa6a" , "cl11_fcsa6b","cl11_fcsa7a"  , "cl11_fcsa7b",           
+           "cl11_fcsa4_4", "cl11_fcsa5", "cl11_fcsa6a" , "cl11_fcsa6b","cl11_fcsa7a"  , "cl11_fcsa7b",           
            "cl11_fcsa7c"  ,"cl11_fcsa7d"  ,"cl11_fcsa7e" , "cl11_fcsa7f",           
            "cl11_fcsa8a"  ,"cl11_fcsa8b","cl11_fcsa8c" ,"cl11_fcsa8d",           
            "cl11_fcsa8e","cl11_fcsa8f")
@@ -101,7 +99,7 @@ CU.JK <- CU.JK[-c(25:26)]
 CU.KK <- CU.KK[-15]
 
 # Confirming that number of items between Derek's list and Items Profile spreadsheet are the same
-# because that spreadsheet will be used to calculate max poss; should be 258
+# because that spreadsheet will be used to calculate max poss; should be 259
 total_Derek <- length(CU.JK)+length(CU.KK)+length(Metro)+length(STMU)+length(UCD)+length(UGA)
 
 # creating dfs for each item set into which to place max poss 
@@ -196,11 +194,9 @@ MaxLocal <- MaxLocal[order(MaxLocal$Item),]
 head(MaxLocal)
 tail(MaxLocal)
 
-setwd("~/Dropbox/Github/Keck/Richard")
 
 # importing Item_Profile
-library(readxl)
-IP <- read.excel("Items Profile_11-30.xlsx", col_names=T)
+IP <- read.csv("Items Profile_12_7.csv", header=T)
 str(IP)
 head(IP)
 
@@ -214,7 +210,7 @@ head(IP)
 tail(IP)
 
 # filling in Max possible on IP df
-IP$Max_poss <- MaxLocal$Max_Poss  ##DBL I don't see where variable "Max_Poss" is being defined
+IP$Max_poss <- MaxLocal$Max_Poss
 
 # creating df to hold Max possible values
 Maxdf <- data.frame(matrix(ncol=5,nrow=8))
@@ -274,7 +270,7 @@ UGA7_Y2S_max <- sum(UGA7_Y2S$Max_poss)
 UGA8_Y2S <- IP[IP$matrix8==1,]
 UGA8_Y2S_max <- sum(UGA8_Y2S$Max_poss)
 
-# orgazing data into vectors to add to df
+# organizing data into vectors to add to df
 Fall1 <- c(CUKK_Y1F_max, NA, Metro3_Y1F_max, STMU4_Y1F_max, UCD_Y1F_max, NA, NA, NA)
 
 Spring1 <- c(NA, CUJK_Y1S_max, Metro8_Y1S_max, STMU9_Y1S_max, NA, UGA_Y1S_nax, NA, NA) 
@@ -296,5 +292,5 @@ Maxdf$Yr2_Spring <- Spring2
 # exporting into Excel
 setwd("./Keck Tables and Figures")
 write.csv(Maxdf, "Max Possible_by_semester.csv")
-write.csv(IP, "Items Profile_12-1.csv")
+write.csv(IP, "Items Profile_Used_items.csv")
 
