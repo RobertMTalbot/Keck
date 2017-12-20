@@ -27,7 +27,7 @@ CU.KK <- c("cl1_fc26" , "cl1_fc27","cl1_fc28",
            "cl7_fc38","cl11_fcmc26" , "cl11_fcmc27", "cl11_fcmc28" ,
            "cl11_fcmc29", "cl11_fcmc31" , "cl11_fcmc38","cl1_fc42","cl1_fc43",
            "cl11_fcsa3a","cl11_fcsa3b","cl11_fcsa4_1", "cl11_fcsa4_2","cl11_fcsa4_3",
-           "cl11_fcsa4_4", "cl11_fcsa6a" , "cl11_fcsa6b","cl11_fcsa7a"  , "cl11_fcsa7b",           
+           "cl11_fcsa4_4", "cl11_fcsa5", "cl11_fcsa6a" , "cl11_fcsa6b","cl11_fcsa7a"  , "cl11_fcsa7b",           
            "cl11_fcsa7c"  ,"cl11_fcsa7d"  ,"cl11_fcsa7e" , "cl11_fcsa7f",           
            "cl11_fcsa8a"  ,"cl11_fcsa8b","cl11_fcsa8c" ,"cl11_fcsa8d",           
            "cl11_fcsa8e","cl11_fcsa8f")
@@ -199,8 +199,7 @@ tail(MaxLocal)
 setwd("~/Dropbox/Github/Keck/Richard")
 
 # importing Item_Profile
-library(readxl)
-IP <- read.excel("Items Profile_11-30.xlsx", col_names=T)
+IP <- read.csv("Items Profile_12_7.csv", header=T)
 str(IP)
 head(IP)
 
