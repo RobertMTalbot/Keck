@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /Users/derekbriggs/Dropbox/Github/Keck/Keck/Scripts/2b_recode_data.R="4DFAB3"
 /Users/derekbriggs/Dropbox/Github/Keck/Scripts/1b_Rasch_GCA.R="76AA5470"
 /Users/derekbriggs/Dropbox/Github/Keck/Scripts/1c_Check_Rasch_Fit_GCA.R="6266973D"
@@ -7,3 +8,8 @@
 /Users/derekbriggs/Dropbox/Github/Keck/Scripts/2d_regressions_allGCAlink.R="3001D75B"
 /Users/derekbriggs/Dropbox/Github/Keck/Scripts/2d_regressions_subGCAlink.R="7C1C9DEF"
 /Users/derekbriggs/Dropbox/Github/Keck/Scripts/max_poss_on_tests.R="5993C59D"
+=======
+/Users/richardnoone/Dropbox/2017 CU Fall/Github/Keck/Keck Analysis/max_poss_on_tests.R="AB5953A8"
+/Users/richardnoone/Dropbox/2017 CU Fall/Github/Keck/Keck Analysis/max_poss_on_testsRN.R="C334C6AB"
+/Users/richardnoone/Dropbox/Github/Keck/Keck/Scripts/max_poss_on_tests.R="17841AA1"
+>>>>>>> 3713d878fe28c86af73fcb56f1b3394ddf670196
