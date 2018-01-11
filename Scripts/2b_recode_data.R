@@ -372,6 +372,9 @@ it.data<-full_join(d12456,d7)
 
 rm(d12,d124,d1245,d12456)
 
+#For use in Rasch calibrations in 2c
+write.csv(it.data,"Keck_local_item_data.csv") 
+
 ### TOTAL SCORES in PERCENT OF TOTAL METRIC
 
 #Drop Students with no Responses to Local Items (even if they took GCA)
@@ -425,8 +428,6 @@ raw.scores<-arrange(raw.scores,per.total)
 
 setwd("~/Dropbox/Github/Keck/Analysis Data")
 
-#For use in Rasch calibrations in 2c
-write.csv(it.data,"Keck_local_item_data.csv") 
 #For use in regression analyses in 2d
 write.csv(raw.scores,"Keck_post_test_per_correct.csv") 
 

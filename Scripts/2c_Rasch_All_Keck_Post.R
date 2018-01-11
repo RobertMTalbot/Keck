@@ -27,6 +27,9 @@ gca_itpars[23,2]<-(-sum(gca_itpars[1:22,2]))
 # define vector with fixed item difficulties
 fixed <- cbind( c(1:2,4:18,20:25), gca_itpars[,2] )   
 fixed
+#alternate subset of linking items--see "1c_Check_Rasch_Fit_GCA.R"
+xx<-c(2,4,6:8,11:14,18,21,25)
+fixed2<-fixed[fixed[,1]%in%xx,]
 
 #Note: I'm excluding JHU. 
 
@@ -80,7 +83,19 @@ post.data<-data.frame(it.data,thetas)
 
 save(post.data, file="postdata.RData")
 
-write.csv(post.data,"Keck_data_thetas_120517.csv")
+##Merge in raw scores in percent of total metric
+
+temp<-read.csv("Keck_post_test_per_correct.csv",header=T)
+
+attach(temp)
+
+post.data<-cbind(post.data,local_tot_score,max.score,per.total)
+
+detach(temp); rm(temp)
+
+names(post.data)
+
+write.csv(post.data,"Keck_data_thetas_011118.csv")
 
 ##Descriptive Stats by Items and Persons
 
@@ -183,43 +198,6 @@ ggplot(data=post.data,aes(x=theta)) +
 
 dev.off()
 
-### TOTAL SCORES in PERCENT OF TOTAL METRIC
 
-#This is tricky. Easy enough to find the sum of item scores for each student
-#but not so easy to figure out max score possible as this depends on items 
-#administered in a particular class
-
-#post.data$tot.score<-apply(post.data[,32:293],1, function(x) sum(x, na.rm=T))
-
-tot.score<-apply(it.data[,32:ncol(it.data)],1, function(x) sum(x, na.rm=T))
-#table(tot.score)
-x<-apply(it.data[-(1:6)], 2,function(x) table(x, useNA='always'))
-
-max.score<-rep(0,nrow(it.data))
-
-#These results come from ....
-
-max.score[post.data$Institution=="CUB_KK" & post.data$Semester=="Fa2015"]<-19
-max.score[post.data$Institution=="CUB_KK" & post.data$Semester=="Fa2016"]<-38
-max.score[post.data$Institution=="CUB_JK" & post.data$Semester=="Sp2016"]<-46
-max.score[post.data$Institution=="CUB_JK" & post.data$Semester=="Sp2017"]<-43
-max.score[post.data$Institution=="Metro_VM" & post.data$Semester=="Fa2015"]<-22
-max.score[post.data$Institution=="Metro_VM" & post.data$Semester=="Sp2016"]<-18
-max.score[post.data$Institution=="Metro_VM" & post.data$Semester=="Fa2016"]<-18
-max.score[post.data$Institution=="Metro_VM" & post.data$Semester=="Sp2017"]<-20
-max.score[post.data$Institution=="StMU_CG" & post.data$Semester=="Fa2015"]<-40
-max.score[post.data$Institution=="StMU_CG" & post.data$Semester=="Sp2016"]<-21
-max.score[post.data$Institution=="StMU_CG" & post.data$Semester=="Fa2016"]<-62
-max.score[post.data$Institution=="StMU_CG" & post.data$Semester=="Sp2017"]<-61
-max.score[post.data$Institution=="UCD_AJ" & post.data$Semester=="Fa2016"]<-8
-max.score[post.data$Institution=="UCD_AJ1" | post.data$Institution=="UCD_AJ2" & post.data$Semester=="Fa2015"]<-12
-max.score[post.data$Institution=="Uga_NA" & post.data$Semester=="Sp2016"]<-24
-max.score[post.data$Institution=="Uga_NA" & post.data$Semester=="Sp2017"]<-7
-
-#table(max.score)
-
-post.data$per.total<-(tot.score/max.score)*100
-
-summary(post.data$per.total)
 
 

@@ -7,15 +7,15 @@
 #------------------------------------------------------------------
 # this script will create a spreadsheet to indicate the maximum 
 # possible points on each test for each institution by time period
-# given Derek's recoding and exclusions in "2b_recode_data.R"
+# given Derek's recoding and exclusions in lines 1-376 of "2b_recode_data.R"
 
-setwd("/Users/richardnoone/Dropbox/2017 CU Fall/Github/Keck/Keck Analysis")
+setwd("~/Dropbox/Github/Keck/Analysis Data")
 
 # Keck_local_item is the result of Derek's recoding and exclusions
 g<-read.csv("Keck_local_item_data.csv")
-str(g)
-head(g)
-colnames(g)
+#str(g)
+#head(g)
+#colnames(g)
 # Derek's used items:
 
 CU.KK <- c("cl1_fc26" , "cl1_fc27","cl1_fc28",              
@@ -194,11 +194,13 @@ MaxLocal <- MaxLocal[order(MaxLocal$Item),]
 head(MaxLocal)
 tail(MaxLocal)
 
-
 # importing Item_Profile
+
+setwd("~/Dropbox/Github/Keck/Original Data/Item Documentation")
+
 IP <- read.csv("Items Profile_12_7.csv", header=T)
-str(IP)
-head(IP)
+#str(IP)
+#head(IP)
 
 colnames(IP)
 # Subsetting for Derek's Items only
@@ -290,7 +292,7 @@ Maxdf$Yr2_Spring <- Spring2
 
 
 # exporting into Excel
-setwd("./Keck Tables and Figures")
+setwd("~/Dropbox/Github/Keck/Analysis Data")
 write.csv(Maxdf, "Max Possible_by_semester.csv")
 write.csv(IP, "Items Profile_Used_items.csv")
 
