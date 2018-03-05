@@ -47,7 +47,7 @@ CU.KK <- c("cl1_fc26" , "cl1_fc27","cl1_fc28",
      
 ## Also excluding cl1_fc31 because 113 out of 114 students answered it correctly
 
-d1<-full.data[full.data$Institution=="CUB_KK" & full.data$post==1,
+d1<-full.data[full.data$Institution=="CUB_KK" & full.data$post==1 & full.data$`Local post done`==1 ,
               c("StudentID","Semester","Institution","Course Code","cl","year",
                 GCA,CU.KK)]
 
@@ -111,7 +111,7 @@ CU.JK <- c("cl7_fc26", "cl7_fc27", "cl7_fc28", "cl7_fc29", "cl7_fc30", "cl7_fc31
 ## Items I excluded from list above because they have no clear basis for recoding, 
 ## collapsing: cl17_fcsa5
 
-d2<-full.data[full.data$Institution=="CUB_JK" & full.data$post==1,
+d2<-full.data[full.data$Institution=="CUB_JK" & full.data$post==1 & full.data$`Local post done`==1,
               c("StudentID","Semester","Institution","Course Code","cl","year",
               GCA,CU.JK)]
 #cl7 items
@@ -171,7 +171,7 @@ JHU<-c("cl2_me1_1", "cl2_me1_2"  ,"cl2_me1_3"  ,
  "cl12_me2_3",   "cl12_me2_4",    "cl2_me3_3arev",  "cl2_me3_3brev", # missing from original
  "cl2_me3_7arev", "cl2_me3_7brev")      # missing from original
 
-d3<-full.data[full.data$Institution=="JHU_EF" & full.data$post==1,
+d3<-full.data[full.data$Institution=="JHU_EF" & full.data$post==1 & full.data$`Local post done`==1,
               c("StudentID","Semester","Institution","Course Code","cl","year",
               GCA,JHU)]
 
@@ -198,7 +198,7 @@ Metro<-c( "cl3_fc11", "cl3_fc12" , "cl3_fc13" ,
 # cl13_sa1, cl13_sa2, cl13_sa3 (odd scoring, no obvious recode strategy)
 # remaining items are all MC, no need to recode
 
-d4<-full.data[full.data$post==1 & full.data$Institution=="Metro_VM",
+d4<-full.data[full.data$post==1 & full.data$Institution=="Metro_VM" & full.data$`Local post done`==1,
               c("StudentID","Semester","Institution","Course Code","cl","year",
               GCA,Metro)]
 
@@ -235,7 +235,7 @@ STMU<-c( "cl4_fcsa2a",    "cl4_fcsa3a"   ,  "cl4_fcsa6a"  ,"cl4_fcsa6b",
 
 ## Excluded Items:  cl4_fcsa8b (no variation ); cl9_fcp4 ; cl4_fcsa5; cl4_fcsa10a
 
-d5<-full.data[full.data$post==1 & full.data$Institution=="StMU_CG",
+d5<-full.data[full.data$Institution=="StMU_CG" & full.data$post==1 & full.data$`Local post done`==1,
               c("StudentID","Semester","Institution","Course Code","cl","year",
               GCA,STMU)]
 
@@ -295,9 +295,9 @@ UCD<-c("cl5_me1_3a","cl5_me1_3b" ,"cl5_me1_3c" , "cl5_me1_9a", "cl5_me1_9b",
        "cl5_me3_4a", "cl5_me3_4b","cl5_me4_2","cl5_me4_3", "cl5_me4_4", "cl5_me4_5")
        
 # Exclude  "cl5_me4_1", "cl6_me4_1","cl6_me4_2", "cl6_me4_2","cl6_me4_4", "cl6_me4_5"
-# This has the effect of excluding all students that where in UCD_AJ2 in Fall 2015
+# This has the effect of excluding all students that where in UCD_AJ2 in Fall 20151607-
 
-d6<-full.data[full.data$post==1 & (full.data$Institution=="UCD_AJ" | full.data$Institution=="UCD_AJ1"),
+d6<-full.data[full.data$post==1 & full.data$`Local post done`==1 & (full.data$Institution=="UCD_AJ" | full.data$Institution=="UCD_AJ1"),
    c("StudentID","Semester","Institution","Course Code","cl","year",GCA, UCD)]
 
 d6$cl5_me1_3a <- recoder(d6$cl5_me1_3a, '4:1')
@@ -328,7 +328,7 @@ UGA<-c("cl10_me1_2" ,"cl10_me1_30", "cl10_me2_2"  ,
 
 # Exclude  cl10_me2_39, cl10_me4_sa1, cl10_me4_sa4,  (odd scoring, no obvious recode strategy)
 
-d7<-full.data[full.data$post==1 & full.data$Institution=="Uga_NA",
+d7<-full.data[full.data$post==1 & full.data$`Local post done`==1 & full.data$Institution=="Uga_NA",
               c("StudentID","Semester","Institution","Course Code","cl","year",
               GCA,UGA)]
 
@@ -359,6 +359,8 @@ tot.local.items
 tot.students<-nrow(d1)+nrow(d2)+nrow(d4)+nrow(d5)+nrow(d6)+nrow(d7)
 tot.students
 
+#N_after_recode<-c()
+
 ## Merge all these item sets (d1, d2, d4, d5, d7)
 ## by course into a new dataframe
 
@@ -375,9 +377,9 @@ rm(d12,d124,d1245,d12456)
 #For use in Rasch calibrations in 2c
 write.csv(it.data,"Keck_local_item_data.csv") 
 
-### TOTAL SCORES in PERCENT OF TOTAL METRIC
+###Where I left off at 1:53 on 3/5/18
 
-#Drop Students with no Responses to Local Items (even if they took GCA)
+### TOTAL SCORES in PERCENT OF TOTAL METRIC
 
 local_tot_score<-apply(it.data[,32:ncol(it.data)],1,function(x) sum(x, na.rm=T))
 
