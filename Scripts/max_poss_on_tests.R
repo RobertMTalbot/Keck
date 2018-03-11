@@ -14,8 +14,6 @@ IP <- read.csv("Items Profile_12_20_17.csv", header=T)
 
 IP$Item<-as.character(IP$Item)
 
-#& (IP$y1_post==1 | IP$y2_post==1)
-
 CU.KK<-IP$Item[IP$Excluded==0 & IP$CUKK==1]
 CU.JK<-IP$Item[IP$Excluded==0 & IP$CUJK==1]
 Metro<-IP$Item[IP$Excluded==0 & IP$Metro==1]
@@ -67,6 +65,8 @@ df6[,1] <- UGA
 # combing dfs into one large one
 MaxLocal <- rbind(df1,df2,df3,df4,df5,df6)
 colnames(MaxLocal)<-c("Item","Max_Poss")
+setwd("~/Dropbox/Github/Keck/Analysis Data")
+write.csv(MaxLocal, "Max_Possible_per_local_item.csv",row.names = FALSE)
 
 #merge maxpossible with IP variables
 IP<-merge(MaxLocal,IP,by="Item")
